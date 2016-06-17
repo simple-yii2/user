@@ -4,6 +4,7 @@ namespace user\backend\controllers;
 
 use Yii;
 use yii\data\ArrayDataProvider;
+use yii\filters\AccessControl;
 use yii\web\BadRequestHttpException;
 use yii\web\Controller;
 use yii\web\ForbiddenHttpException;
