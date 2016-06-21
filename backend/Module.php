@@ -80,4 +80,23 @@ class Module extends \yii\base\Module {
 		];
 	}
 
+	/**
+	 * Making main menu item of module
+	 * @return array
+	 */
+	public function getMenuItem()
+	{
+		if (Yii::$app->user->can('admin')) {
+			return [
+				['label' => Yii::t('user', 'Security'), 'items' => [
+					['label' => Yii::t('user', 'Permissions'), 'url' => ['/user/permission/index']],
+					['label' => Yii::t('user', 'Roles'), 'url' => ['/user/role/index']],
+					['label' => Yii::t('user', 'Users'), 'url' => ['/user/user/index']],
+				]],
+			];
+		}
+		
+		return [];
+	}
+
 }

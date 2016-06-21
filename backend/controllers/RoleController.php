@@ -52,12 +52,12 @@ class RoleController extends Controller {
 		unset($items['author']);
 
 		$dataProvider = new ArrayDataProvider([
-			'allModels'=>$items,
-			'pagination'=>false,
+			'allModels' => $items,
+			'pagination' => false,
 		]);
 
 		return $this->render('index', [
-			'dataProvider'=>$dataProvider,
+			'dataProvider' => $dataProvider,
 		]);
 	}
 
@@ -68,13 +68,13 @@ class RoleController extends Controller {
 	public function actionCreate() {
 		$model = new RoleForm;
 
-		if ($model->load(Yii::$app->request->post()) && $model->create()) {
+		if ($model->load(Yii::$app->getRequest()->post()) && $model->create()) {
 			Yii::$app->session->setFlash('success', Yii::t('user', 'Changes saved successfully.'));
 			return $this->redirect(['index']);
 		}
 
 		return $this->render('create', [
-			'model'=>$model,
+			'model' => $model,
 		]);
 	}
 
@@ -94,7 +94,7 @@ class RoleController extends Controller {
 		}
 
 		return $this->render('update', [
-			'model'=>$model,
+			'model' => $model,
 		]);
 	}
 

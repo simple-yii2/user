@@ -29,10 +29,10 @@ class UserSearch extends User {
 	 */
 	public function search($params) {
 		//ActiveQuery
-		$query = User::find()->andWhere(['not', ['id'=>Yii::$app->user->id]]);
+		$query = User::find()->andWhere(['not', ['id' => Yii::$app->getUser()->id]]);
 
 		$dataProvider = new ActiveDataProvider([
-			'query'=>$query,
+			'query' => $query,
 		]);
 
 		//return data provider if no search
