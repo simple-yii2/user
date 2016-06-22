@@ -20,7 +20,7 @@ class Module extends \yii\base\Module {
 		parent::init();
 
 		$this->checkDatabase();
-		$this->addTranslation();
+		self::addTranslation();
 	}
 
 	/**
@@ -71,27 +71,33 @@ class Module extends \yii\base\Module {
 	 * Adding translation to i18n
 	 * @return void
 	 */
-	protected function addTranslation()
+	protected static function addTranslation()
 	{
-		Yii::$app->i18n->translations['user'] = [
-			'class' => 'yii\i18n\PhpMessageSource',
-			'sourceLanguage' => 'en-US',
-			'basePath' => '@user/messages',
-		];
+		if (!isset(Yii::$app->i18n->translations['user'])) {
+			Yii::$app->i18n->translations['user'] = [
+				'class' => 'yii\i18n\PhpMessageSource',
+				'sourceLanguage' => 'en-US',
+				'basePath' => '@user/messages',
+			];
+		}
 	}
 
 	/**
-	 * Making main menu item of module
+	 * Making module menu.
+	 * @param string $base route base
 	 * @return array
 	 */
-	public function getMenuItem()
+	public static function getMenu($base)
 	{
+		self::addTranslation();
+
 		if (Yii::$app->user->can('admin')) {
 			return [
 				['label' => Yii::t('user', 'Security'), 'items' => [
-					['label' => Yii::t('user', 'Permissions'), 'url' => ['/user/permission/index']],
-					['label' => Yii::t('user', 'Roles'), 'url' => ['/user/role/index']],
-					['label' => Yii::t('user', 'Users'), 'url' => ['/user/user/index']],
+					['label' => Yii::t('user', 'Permissions'), 'url' => ["$base/user/permission/index"]],
+					['label' => Yii::t('user', 'Roles'), 'url' => ["$base/user/role/index"]],
+					'<li role="separator" class="divider"></li>',
+					['label' => Yii::t('user', 'Users'), 'url' => ["$base/user/user/index"]],
 				]],
 			];
 		}

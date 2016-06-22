@@ -6,6 +6,8 @@ use yii\web\AssetBundle;
 
 class UserAsset extends AssetBundle {
 
+	public $sourcePath = __DIR__ . '/user';
+
 	public $js = [
 		'role.js',
 	];
@@ -13,12 +15,5 @@ class UserAsset extends AssetBundle {
 	public $depends = [
 		'yii\web\JqueryAsset',
 	];
-
-	public function init()
-	{
-		parent::init();
-
-		$this->sourcePath = dirname(__FILE__) . '/user';
-	}
 
 }
