@@ -41,10 +41,10 @@ class UserForm extends Model {
 	 */
 	public function attributeLabels() {
 		return [
-			'email'=>Yii::t('user', 'E-mail'),
-			'active'=>Yii::t('user', 'Active'),
-			'comment'=>Yii::t('user', 'Comment'),
-			'roles'=>Yii::t('user', 'Roles'),
+			'email' => Yii::t('user', 'E-mail'),
+			'active' => Yii::t('user', 'Active'),
+			'comment' => Yii::t('user', 'Comment'),
+			'roles' => Yii::t('user', 'Roles'),
 		];
 	}
 
@@ -56,7 +56,7 @@ class UserForm extends Model {
 		return [
 			['active', 'boolean'],
 			['comment', 'string'],
-			['roles', 'each', 'rule'=>['string']],
+			['roles', 'each', 'rule' => ['string']],
 		];
 	}
 
@@ -70,9 +70,9 @@ class UserForm extends Model {
 		
 		if ($this->item !== null) {
 			$this->setAttributes([
-				'email'=>$this->item->email,
-				'active'=>$this->item->active,
-				'comment'=>$this->item->comment,
+				'email' => $this->item->email,
+				'active' => $this->item->active,
+				'comment' => $this->item->comment,
 			], false);
 
 			$this->roles = array_keys(Yii::$app->authManager->getAssignments($this->item->id));
@@ -95,8 +95,8 @@ class UserForm extends Model {
 		if ($this->item === null) return false;
 
 		$this->item->setAttributes([
-			'active'=>$this->active,
-			'comment'=>$this->comment,
+			'active' => $this->active,
+			'comment' => $this->comment,
 		], false);
 		if (!$this->item->save(false)) return false;
 

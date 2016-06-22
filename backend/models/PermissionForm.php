@@ -20,7 +20,7 @@ class PermissionForm extends RbacForm {
 	 */
 	public function attributeLabels() {
 		return array_merge(parent::attributeLabels(), [
-			'own'=>Yii::t('user', 'Allow to author'),
+			'own' => Yii::t('user', 'Allow to author'),
 		]);
 	}
 

@@ -38,9 +38,9 @@ class LoginForm extends Model {
 	 */
 	public function attributeLabels() {
 		return [
-			'email'=>Yii::t('user', 'E-mail'),
-			'password'=>Yii::t('user', 'Password'),
-			'rememberMe'=>Yii::t('user', 'Remember me'),
+			'email' => Yii::t('user', 'E-mail'),
+			'password' => Yii::t('user', 'Password'),
+			'rememberMe' => Yii::t('user', 'Remember me'),
 		];
 	}
 

@@ -31,8 +31,8 @@ abstract class RbacForm extends Model {
 	 */
 	public function attributeLabels() {
 		return [
-			'name'=>Yii::t('user', 'Name'),
-			'description'=>Yii::t('user', 'Description'),
+			'name' => Yii::t('user', 'Name'),
+			'description' => Yii::t('user', 'Description'),
 		];
 	}
 
@@ -63,8 +63,8 @@ abstract class RbacForm extends Model {
 		parent::init();
 		
 		if ($this->item !== null) $this->setAttributes([
-			'name'=>$this->item->name,
-			'description'=>$this->item->description,
+			'name' => $this->item->name,
+			'description' => $this->item->description,
 		], false);
 	}
 

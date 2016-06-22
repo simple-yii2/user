@@ -41,8 +41,8 @@ class UserController extends Controller {
 		$model = new UserSearch;
 
 		return $this->render('index', [
-			'dataProvider'=>$model->search(Yii::$app->getRequest()->get()),
-			'model'=>$model,
+			'dataProvider' => $model->search(Yii::$app->getRequest()->get()),
+			'model' => $model,
 		]);
 	}
 
@@ -55,14 +55,14 @@ class UserController extends Controller {
 		$item = User::findOne($id);
 		if ($item === null) throw new BadRequestHttpException(Yii::t('user', 'User not found.'));
 
-		$model = new UserForm(['item'=>$item]);
+		$model = new UserForm(['item' => $item]);
 		if ($model->load(Yii::$app->request->post()) && $model->update()) {
 			Yii::$app->session->setFlash('success', Yii::t('user', 'Changes saved successfully.'));
 			return $this->redirect(['index']);
 		}
 
 		return $this->render('update', [
-			'model'=>$model,
+			'model' => $model,
 		]);
 	}
 

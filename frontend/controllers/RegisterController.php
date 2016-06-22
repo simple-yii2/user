@@ -32,7 +32,7 @@ class RegisterController extends Controller {
 			return $this->goHome();
 		} else {
 			return $this->render('index', [
-				'model'=>$model,
+				'model' => $model,
 			]);
 		}
 	}

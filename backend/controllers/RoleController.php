@@ -39,7 +39,7 @@ class RoleController extends Controller {
 	 */
 	public function actions() {
 		return [
-			'users'=>'user\common\actions\AutoComplete',
+			'users' => 'user\common\actions\AutoComplete',
 		];
 	}
 
@@ -85,9 +85,9 @@ class RoleController extends Controller {
 	 */
 	public function actionUpdate($name) {
 		$item = Yii::$app->authManager->getRole($name);
-		if ($item === null) throw new BadRequestHttpException(Yii::t('user', 'Role was not found.'));
+		if ($item === null) throw new BadRequestHttpException(Yii::t('user', 'Role not found.'));
 
-		$model = new RoleForm(['item'=>$item]);
+		$model = new RoleForm(['item' => $item]);
 		if ($model->load(Yii::$app->request->post()) && $model->update()) {
 			Yii::$app->session->setFlash('success', Yii::t('user', 'Changes saved successfully.'));
 			return $this->redirect(['index']);
@@ -107,7 +107,7 @@ class RoleController extends Controller {
 		$auth = Yii::$app->authManager;
 
 		$item = $auth->getRole($name);
-		if ($item === null) throw new BadRequestHttpException(Yii::t('user', 'Role was not found.'));
+		if ($item === null) throw new BadRequestHttpException(Yii::t('user', 'Role not found.'));
 
 		if ($auth->remove($item)) Yii::$app->session->setFlash('success', Yii::t('user', 'Role deleted successfully.'));
 
@@ -123,12 +123,12 @@ class RoleController extends Controller {
 		//user
 		$user = User::findByEmail($email);
 		if ($user === null) return Json::encode([
-			'error'=>Yii::t('user', 'User not found.'),
+			'error' => Yii::t('user', 'User not found.'),
 		]);
 
-		$model = new RoleForm(['users'=>[$user->id]]);
+		$model = new RoleForm(['users' => [$user->id]]);
 		return Json::encode([
-			'content'=>$this->renderPartial('form/assignment', ['model'=>$model]),
+			'content' => $this->renderPartial('form/assignment', ['model' => $model]),
 		]);
 	}
 

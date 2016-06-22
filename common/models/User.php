@@ -26,10 +26,10 @@ class User extends ActiveRecord implements IdentityInterface {
 	 */
 	public function attributeLabels() {
 		return [
-			'email'=>Yii::t('user', 'E-mail'),
-			'firstName'=>Yii::t('user', 'First name'),
-			'lastName'=>Yii::t('user', 'Last name'),
-			'mailing'=>Yii::t('user', 'Notify about promotions, discounts, news'),
+			'email' => Yii::t('user', 'E-mail'),
+			'firstName' => Yii::t('user', 'First name'),
+			'lastName' => Yii::t('user', 'Last name'),
+			'mailing' => Yii::t('user', 'Notify about promotions, discounts, news'),
 		];
 	}
 
@@ -39,7 +39,7 @@ class User extends ActiveRecord implements IdentityInterface {
 	 * @return User
 	 */
 	public static function findByEmail($email) {
-		return static::findOne(['email'=>$email]);
+		return static::findOne(['email' => $email]);
 	}
 
 	/**
@@ -93,7 +93,7 @@ class User extends ActiveRecord implements IdentityInterface {
 			if (!$this->save()) return false;
 		}
 
-		return Yii::$app->mailer->compose('@app/modules/user/mail/confirm', ['user'=>$this])
+		return Yii::$app->mailer->compose('@app/modules/user/mail/confirm', ['user' => $this])
 			->setTo($this->email)
 			->setFrom(Yii::$app->mailer->transport->getUsername())
 			->setSubject(Yii::t('user', 'E-mail confirmation'))
@@ -106,7 +106,7 @@ class User extends ActiveRecord implements IdentityInterface {
 	 * @return User
 	 */
 	public static function findByConfirmToken($token) {
-		return static::findOne(['confirmToken'=>$token]);
+		return static::findOne(['confirmToken' => $token]);
 	}
 
 	/**
@@ -142,7 +142,7 @@ class User extends ActiveRecord implements IdentityInterface {
 			if (!$this->save()) return false;
 		}
 
-		return Yii::$app->mailer->compose('@app/modules/user/mail/reset', ['user'=>$this])
+		return Yii::$app->mailer->compose('@app/modules/user/mail/reset', ['user' => $this])
 			->setTo($this->email)
 			->setFrom(Yii::$app->mailer->transport->getUsername())
 			->setSubject(Yii::t('user', 'Password reset'))
@@ -159,7 +159,7 @@ class User extends ActiveRecord implements IdentityInterface {
 			return null;
 		}
 
-		return static::findOne(['passwordResetToken'=>$token]);
+		return static::findOne(['passwordResetToken' => $token]);
 	}
 
 	/**

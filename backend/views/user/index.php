@@ -15,34 +15,35 @@ $this->params['breadcrumbs'] = [
 <h1><?= Html::encode($title) ?></h1>
 
 <?= GridView::widget([
-	'dataProvider'=>$dataProvider,
-	'filterModel'=>$model,
-	'summary'=>'',
-	'tableOptions'=>['class'=>'table table-condensed'],
+	'dataProvider' => $dataProvider,
+	'filterModel' => $model,
+	'summary' => '',
+	'tableOptions' => ['class' => 'table table-condensed'],
 	'rowOptions' => function ($model, $key, $index, $grid) {
-		return !$model->active ? ['class'=>'warning'] : [];
+		return !$model->active ? ['class' => 'warning'] : [];
 	},
-	'columns'=>[
+	'columns' => [
 		[
-			'attribute'=>'email',
-			'format'=>'html',
-			'value'=>function($model, $key, $index, $column) {
+			'attribute' => 'email',
+			'format' => 'html',
+			'value' => function($model, $key, $index, $column) {
 				$r = Html::encode($model->email);
 				$s = $model->username;
-				if ($s !== $model->email) $r .= ' '.Html::tag('span', Html::encode('('.$s.')'), ['class'=>'text-muted']);
+				if ($s !== $model->email) $r .= ' '.Html::tag('span', Html::encode('('.$s.')'), ['class' => 'text-muted']);
 				foreach (\Yii::$app->authManager->getRolesByUser($model->id) as $role) if ($role->name !== 'author') {
 					$r .= ' '.Html::tag('span', Html::encode($role->name), [
-						'class'=>'label label-primary',
-						'title'=>$role->description,
+						'class' => 'label label-primary',
+						'title' => $role->description,
 					]);
 				}
+
 				return $r;
 			},
 		],
 		[
-			'class'=>'yii\grid\ActionColumn',
-			'options'=>['style'=>'width: 25px;'],
-			'template'=>'{update}',
+			'class' => 'yii\grid\ActionColumn',
+			'options' => ['style' => 'width: 25px;'],
+			'template' => '{update}',
 		],
 	],
 ]) ?>

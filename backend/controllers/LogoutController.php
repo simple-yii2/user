@@ -11,7 +11,7 @@ class LogoutController extends Controller {
 
 	public function actions() {
 		return [
-			'index'=>'user\common\actions\Logout',
+			'index' => 'user\common\actions\Logout',
 		];
 	}
 

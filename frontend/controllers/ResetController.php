@@ -29,7 +29,7 @@ class ResetController extends Controller {
 		}
 
 		return $this->render('request', [
-			'model'=>$model,
+			'model' => $model,
 		]);
 	}
 

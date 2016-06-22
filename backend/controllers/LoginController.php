@@ -11,7 +11,7 @@ class LoginController extends Controller {
 
 	public function actions() {
 		return [
-			'index'=>'user\common\actions\Login',
+			'index' => 'user\common\actions\Login',
 		];
 	}
 

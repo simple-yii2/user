@@ -23,7 +23,7 @@ class Login extends Action {
 		};
 
 		return $this->controller->render('index', [
-			'model'=>$model,
+			'model' => $model,
 		]);
 	}
 

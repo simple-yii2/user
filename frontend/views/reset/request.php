@@ -13,8 +13,8 @@ $this->params['breadcrumbs'] = [
 <h1><?= Html::encode($title) ?></h1>
 
 <?php $form = ActiveForm::begin([
-	'layout'=>'horizontal',
-	'enableClientValidation'=>false,
+	'layout' => 'horizontal',
+	'enableClientValidation' => false,
 ]); ?>
 
 	<div class="form-group">
@@ -26,15 +26,15 @@ $this->params['breadcrumbs'] = [
 	<fieldset>
 		<?= $form->field($model, 'email') ?>
 		<?= $form->field($model, 'verifyCode')->widget(Captcha::className(), [
-			'options'=>['class'=>'form-control', 'autocomplete'=>'off'],
-			'captchaAction'=>['/site/captcha'],
-			'template'=>'<div class="captcha">{image}<div>{input}</div></div>',
+			'options' => ['class' => 'form-control', 'autocomplete' => 'off'],
+			'captchaAction' => ['/site/captcha'],
+			'template' => '<div class="captcha">{image}<div>{input}</div></div>',
 		]) ?>
 	</fieldset>
 
 	<div class="form-group">
 		<div class="col-sm-offset-3 col-sm-6">
-			<?= Html::submitButton(Yii::t('user', 'Send'), ['class'=>'btn btn-primary', 'name'=>'reset-button']) ?>
+			<?= Html::submitButton(Yii::t('user', 'Send'), ['class' => 'btn btn-primary', 'name' => 'reset-button']) ?>
 		</div>
 	</div>
 

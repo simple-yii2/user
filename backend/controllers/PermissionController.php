@@ -40,12 +40,12 @@ class PermissionController extends Controller {
 		unset($items['own']);
 
 		$dataProvider = new ArrayDataProvider([
-			'allModels'=>$items,
-			'pagination'=>false,
+			'allModels' => $items,
+			'pagination' => false,
 		]);
 
 		return $this->render('index', [
-			'dataProvider'=>$dataProvider,
+			'dataProvider' => $dataProvider,
 		]);
 	}
 
@@ -60,7 +60,7 @@ class PermissionController extends Controller {
 		}
 
 		return $this->render('create', [
-			'model'=>$model,
+			'model' => $model,
 		]);
 	}
 
@@ -73,14 +73,14 @@ class PermissionController extends Controller {
 		$item = Yii::$app->authManager->getPermission($name);
 		if ($item === null) throw new BadRequestHttpException(Yii::t('user', 'Premission was not found.'));
 
-		$model = new PermissionForm(['item'=>$item]);
+		$model = new PermissionForm(['item' => $item]);
 		if ($model->load(Yii::$app->request->post()) && $model->update()) {
 			Yii::$app->session->setFlash('success', Yii::t('Changes saved successfully.'));
 			return $this->redirect(['index']);
 		}
 
 		return $this->render('update', [
-			'model'=>$model,
+			'model' => $model,
 		]);
 	}
 

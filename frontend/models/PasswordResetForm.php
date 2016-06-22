@@ -51,8 +51,8 @@ class PasswordResetForm extends Model {
 	 */
 	public function attributeLabels() {
 		return [
-			'password'=>Yii::t('user', 'Password'),
-			'confirm'=>Yii::t('user', 'Confirm'),
+			'password' => Yii::t('user', 'Password'),
+			'confirm' => Yii::t('user', 'Confirm'),
 		];
 	}
 
@@ -63,9 +63,9 @@ class PasswordResetForm extends Model {
 	public function rules() {
 		return [
 			['password', 'required'],
-			['password', 'string', 'min'=>4],
+			['password', 'string', 'min' => 4],
 			['confirm', 'required'],
-			['confirm', 'compare', 'compareAttribute'=>'password'],
+			['confirm', 'compare', 'compareAttribute' => 'password'],
 		];
 	}
 

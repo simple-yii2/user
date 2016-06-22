@@ -27,8 +27,8 @@ class PasswordResetRequestForm extends Model {
 	 */
 	public function attributeLabels() {
 		return [
-			'email'=>Yii::t('user', 'E-mail'),
-			'verifyCode'=>Yii::t('user', 'Verify code'),
+			'email' => Yii::t('user', 'E-mail'),
+			'verifyCode' => Yii::t('user', 'Verify code'),
 		];
 	}
 
@@ -38,12 +38,12 @@ class PasswordResetRequestForm extends Model {
 	 */
 	public function rules() {
 		return [
-			['email', 'filter', 'filter'=>'trim'],
+			['email', 'filter', 'filter' => 'trim'],
 			[['email', 'verifyCode'], 'required'],
 			['email', 'email'],
 			['email', 'exist',
-				'targetClass'=>'\app\modules\user\common\models\User',
-				'filter'=>['active'=>true],
+				'targetClass' => '\app\modules\user\common\models\User',
+				'filter' => ['active' => true],
 			],
 			['verifyCode', 'captcha'],
 		];
@@ -55,8 +55,8 @@ class PasswordResetRequestForm extends Model {
 	 */
 	public function sendEmail() {
 		$user = User::findOne([
-			'active'=>true,
-			'email'=>$this->email,
+			'active' => true,
+			'email' => $this->email,
 		]);
 
 		if ($user !== null) return $user->sendResetPasswordEmail();

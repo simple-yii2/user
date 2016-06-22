@@ -30,8 +30,8 @@ class RoleForm extends PermissionForm {
 	 */
 	public function attributeLabels() {
 		return array_merge(parent::attributeLabels(), [
-			'roles'=>Yii::t('user', 'Roles'),
-			'permissions'=>Yii::t('user', 'Permissions'),
+			'roles' => Yii::t('user', 'Roles'),
+			'permissions' => Yii::t('user', 'Permissions'),
 		]);
 	}
 
@@ -41,8 +41,8 @@ class RoleForm extends PermissionForm {
 	 */
 	public function rules() {
 		return array_merge(parent::rules(), [
-			[['roles', 'permissions'], 'each', 'rule'=>['string']],
-			['users', 'each', 'rule'=>['integer']],
+			[['roles', 'permissions'], 'each', 'rule' => ['string']],
+			['users', 'each', 'rule' => ['integer']],
 		]);
 	}
 

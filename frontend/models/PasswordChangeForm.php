@@ -38,9 +38,9 @@ class PasswordChangeForm extends Model {
 	 */
 	public function attributeLabels() {
 		return [
-			'oldPassword'=>Yii::t('user', 'Current password'),
-			'password'=>Yii::t('user', 'New password'),
-			'confirm'=>Yii::t('user', 'Confirm'),
+			'oldPassword' => Yii::t('user', 'Current password'),
+			'password' => Yii::t('user', 'New password'),
+			'confirm' => Yii::t('user', 'Confirm'),
 		];
 	}
 
@@ -60,9 +60,9 @@ class PasswordChangeForm extends Model {
 					}
 				}
 			}],
-			['password', 'string', 'min'=>4],
+			['password', 'string', 'min' => 4],
 			['confirm', 'required'],
-			['confirm', 'compare', 'compareAttribute'=>'password'],
+			['confirm', 'compare', 'compareAttribute' => 'password'],
 		];
 	}
 

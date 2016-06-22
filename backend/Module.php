@@ -56,11 +56,11 @@ class Module extends \yii\base\Module {
 		}
 
 		//data
-		if (User::find()->andWhere(['admin'=>true, 'active'=>true])->count() == 0) {
+		if (User::find()->andWhere(['admin' => true, 'active' => true])->count() == 0) {
 			$model = new User([
-				'admin'=>true,
-				'active'=>true,
-				'email'=>'admin',
+				'admin' => true,
+				'active' => true,
+				'email' => 'admin',
 			]);
 			$model->setPassword('admin');
 			$model->save();
@@ -74,9 +74,9 @@ class Module extends \yii\base\Module {
 	protected function addTranslation()
 	{
 		Yii::$app->i18n->translations['user'] = [
-			'class'=>'yii\i18n\PhpMessageSource',
-			'sourceLanguage'=>'en-US',
-			'basePath'=>'@user/messages',
+			'class' => 'yii\i18n\PhpMessageSource',
+			'sourceLanguage' => 'en-US',
+			'basePath' => '@user/messages',
 		];
 	}
 

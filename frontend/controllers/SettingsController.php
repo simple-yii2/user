@@ -22,7 +22,7 @@ class SettingsController extends Controller {
 			Yii::$app->getSession()->setFlash('success', Yii::t('user', 'Changes saved successfully.'));
 		}
 
-		return $this->render('index', ['model'=>$model]);
+		return $this->render('index', ['model' => $model]);
 	}
 
 	/**

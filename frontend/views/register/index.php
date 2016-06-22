@@ -13,8 +13,8 @@ $this->params['breadcrumbs'] = [
 <h1><?= Html::encode($title) ?></h1>
 
 <?php $form = ActiveForm::begin([
-	'layout'=>'horizontal',
-	'enableClientValidation'=>false,
+	'layout' => 'horizontal',
+	'enableClientValidation' => false,
 ]); ?>
 
 	<fieldset>
@@ -24,9 +24,9 @@ $this->params['breadcrumbs'] = [
 		<?= $form->field($model, 'firstName') ?>
 		<?= $form->field($model, 'lastName') ?>
 		<?= $form->field($model, 'verifyCode')->widget(Captcha::className(), [
-			'options'=>['class'=>'form-control', 'autocomplete'=>'off'],
-			'captchaAction'=>['/site/captcha'],
-			'template'=>'<div class="captcha">{image}<div>{input}</div></div>',
+			'options' => ['class' => 'form-control', 'autocomplete' => 'off'],
+			'captchaAction' => ['/site/captcha'],
+			'template' => '<div class="captcha">{image}<div>{input}</div></div>',
 		]) ?>
 		<?= $form->field($model, 'mailing')->checkbox() ?>
 		<div class="form-group">
@@ -38,7 +38,7 @@ $this->params['breadcrumbs'] = [
 	
 	<div class="form-group">
 		<div class="col-sm-offset-3 col-sm-6">
-			<?= Html::submitButton(Yii::t('user', 'Register'), ['class'=>'btn btn-primary']) ?>
+			<?= Html::submitButton(Yii::t('user', 'Register'), ['class' => 'btn btn-primary']) ?>
 		</div>
 	</div>
 

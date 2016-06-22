@@ -8,6 +8,6 @@ $link = Yii::$app->urlManager->createAbsoluteUrl([
 ]);
 
 echo Yii::t('user', "<p>Hello!</p>\n\n<p>You have been successfully registered on the site «{name}». To confirm your e-mail click the link:</p>\n\n<p>{link}</p>\n\n<p>Please disregard this letter if it fell to you by mistake.</p>\n\n<p>Yours faithfully,<br>\nSupport service «{name}»</p>", [
-	'name'=>Yii::$app->name,
-	'link'=>Html::a(Html::encode($link), $link),
+	'name' => Yii::$app->name,
+	'link' => Html::a(Html::encode($link), $link),
 ]);

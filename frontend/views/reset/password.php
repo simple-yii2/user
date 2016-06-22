@@ -12,8 +12,8 @@ $this->params['breadcrumbs'] = [
 <h1><?= Html::encode($title) ?></h1>
 
 <?php $form = ActiveForm::begin([
-	'layout'=>'horizontal',
-	'enableClientValidation'=>false,
+	'layout' => 'horizontal',
+	'enableClientValidation' => false,
 ]); ?>
 
 	<div class="form-group">
@@ -29,7 +29,7 @@ $this->params['breadcrumbs'] = [
 
 	<div class="form-group">
 		<div class="col-sm-offset-3 col-sm-6">
-			<?= Html::submitButton(Yii::t('user', 'Save'), ['class'=>'btn btn-primary', 'name'=>'login-button']) ?>
+			<?= Html::submitButton(Yii::t('user', 'Save'), ['class' => 'btn btn-primary', 'name' => 'login-button']) ?>
 		</div>
 	</div>
 

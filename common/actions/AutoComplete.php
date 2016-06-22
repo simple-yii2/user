@@ -26,7 +26,7 @@ class AutoComplete extends Action {
 	public function run($term) {
 		//query conditions
 		$query = User::find()->andFilterWhere(['like', 'email', $term]);
-		if (!$this->admin) $query->andWhere(['not', ['admin'=>true]]);
+		if (!$this->admin) $query->andWhere(['not', ['admin' => true]]);
 
 		//get items
 		$rows = $query->limit($this->limit)->all();
@@ -35,8 +35,8 @@ class AutoComplete extends Action {
 		$items = array_map(function($v) {
 			$html = Html::encode($v->email);
 			$username = $v->username;
-			if ($username !== $v->email) $html .= ' '.Html::tag('span', Html::encode($username), ['class'=>'text-muted']);
-			return ['label'=>$v->email, 'value'=>$v->email, 'id'=>(string) $v->id, 'html'=>$html];
+			if ($username !== $v->email) $html .= ' '.Html::tag('span', Html::encode($username), ['class' => 'text-muted']);
+			return ['label' => $v->email, 'value' => $v->email, 'id' => (string) $v->id, 'html' => $html];
 		}, $rows);
 
 		return Json::encode($items);

@@ -58,13 +58,13 @@ class RegisterForm extends Model {
 	 */
 	public function attributeLabels() {
 		return [
-			'email'=>Yii::t('user', 'E-mail'),
-			'password'=>Yii::t('user', 'Password'),
-			'confirm'=>Yii::t('user', 'Confirm'),
-			'firstName'=>Yii::t('user', 'First name'),
-			'lastName'=>Yii::t('user', 'Last name'),
-			'verifyCode'=>Yii::t('user', 'Verify code'),
-			'mailing'=>Yii::t('user', 'Notify about promotions, discounts, news'),
+			'email' => Yii::t('user', 'E-mail'),
+			'password' => Yii::t('user', 'Password'),
+			'confirm' => Yii::t('user', 'Confirm'),
+			'firstName' => Yii::t('user', 'First name'),
+			'lastName' => Yii::t('user', 'Last name'),
+			'verifyCode' => Yii::t('user', 'Verify code'),
+			'mailing' => Yii::t('user', 'Notify about promotions, discounts, news'),
 		];
 	}
 
@@ -76,13 +76,13 @@ class RegisterForm extends Model {
 		return [
 			[['email', 'password', 'verifyCode'], 'required'],
 			['email', 'email'],
-			['password', 'string', 'min'=>4],
-			['confirm', 'compare', 'compareAttribute'=>'password'],
-			[['firstName', 'lastName'], 'string', 'max'=>50],
+			['password', 'string', 'min' => 4],
+			['confirm', 'compare', 'compareAttribute' => 'password'],
+			[['firstName', 'lastName'], 'string', 'max' => 50],
 			['verifyCode', 'captcha'],
 			['mailing', 'boolean'],
 			['email', function($attribute, $params) {
-				if (User::find()->where(['email'=>$this->email])->count() > 0) {
+				if (User::find()->where(['email' => $this->email])->count() > 0) {
 					$this->addError($attribute, Yii::t('user', 'The entered e-mail is already in use.'));
 				}
 			}],
@@ -97,11 +97,11 @@ class RegisterForm extends Model {
 		if ($this->validate()) {
 			$user = $this->_user = new User;
 			$user->setAttributes([
-				'active'=>true,
-				'email'=>$this->email,
-				'firstName'=>$this->firstName,
-				'lastName'=>$this->lastName,
-				'mailing'=>$this->mailing,
+				'active' => true,
+				'email' => $this->email,
+				'firstName' => $this->firstName,
+				'lastName' => $this->lastName,
+				'mailing' => $this->mailing,
 			], false);
 			$user->setPassword($this->password);
 			if (!$user->save(false)) return false;

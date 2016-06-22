@@ -9,8 +9,8 @@ $title = $this->name = Yii::t('user', 'Login');
 <h1><?= Html::encode($title) ?></h1>
 
 <?php $form = ActiveForm::begin([
-	'layout'=>'horizontal',
-	'enableClientValidation'=>false,
+	'layout' => 'horizontal',
+	'enableClientValidation' => false,
 ]); ?>
 
 	<fieldset>
@@ -21,7 +21,7 @@ $title = $this->name = Yii::t('user', 'Login');
 
 	<div class="form-group">
 		<div class="col-sm-offset-3 col-sm-6">
-			<?= Html::submitButton(Yii::t('user', 'Login'), ['class'=>'btn btn-primary']) ?>
+			<?= Html::submitButton(Yii::t('user', 'Login'), ['class' => 'btn btn-primary']) ?>
 		</div>
 	</div>
 
