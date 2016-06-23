@@ -25,7 +25,7 @@ class PermissionController extends Controller {
 			'access' => [
 				'class' => AccessControl::className(),
 				'rules' => [
-					['allow' => true, 'roles' => ['admin']],
+					['allow' => true, 'roles' => ['Admin']],
 				],
 			],
 		];
