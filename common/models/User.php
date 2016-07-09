@@ -170,24 +170,42 @@ class User extends ActiveRecord implements IdentityInterface {
 		$this->passwordResetToken = null;
 	}
 
-
-	//IdentityInterface
+	/**
+	 * @inheritdoc
+	 * @see yii\web\IdentityInterface
+	 */
 	public static function findIdentity($id) {
 		return static::findOne(['id' => $id]);
 	}
 
+	/**
+	 * @inheritdoc
+	 * @see yii\web\IdentityInterface
+	 */
 	public static function findIdentityByAccessToken($token, $type = null) {
 		throw new NotSupportedException('"findIdentityByAccessToken" is not implemented.');
 	}
 
+	/**
+	 * @inheritdoc
+	 * @see yii\web\IdentityInterface
+	 */
 	public function getId() {
 		return $this->getPrimaryKey();
 	}
 
+	/**
+	 * @inheritdoc
+	 * @see yii\web\IdentityInterface
+	 */
 	public function getAuthKey() {
 		return $this->authKey;
 	}
 
+	/**
+	 * @inheritdoc
+	 * @see yii\web\IdentityInterface
+	 */
 	public function validateAuthKey($authKey) {
 		return $this->getAuthKey() === $authKey;
 	}
