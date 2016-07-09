@@ -70,6 +70,8 @@ class User extends ActiveRecord implements IdentityInterface {
 
 		$this->loginDate = gmdate('Y-m-d H:i:s');
 		$this->loginIP = Yii::$app->request->userIP;
+		if (empty($this->authKey))
+			$this->generateAuthKey();
 
 		return $this->save() && Yii::$app->user->login($this, $duration);
 	}
@@ -163,11 +165,20 @@ class User extends ActiveRecord implements IdentityInterface {
 	}
 
 	/**
-	 * Removs password reset token
-	 * @return type
+	 * Removes password reset token
+	 * @return void
 	 */
 	public function removePasswordResetToken() {
 		$this->passwordResetToken = null;
+	}
+
+	/**
+	 * Generates auth key for cookie-based login
+	 * @return void
+	 */
+	protected function generateAuthKey()
+	{
+		$this->authKey = Yii::$app->security->generateRandomString();
 	}
 
 	/**
