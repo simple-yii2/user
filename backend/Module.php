@@ -77,7 +77,7 @@ class Module extends \yii\base\Module {
 			Yii::$app->i18n->translations['user'] = [
 				'class' => 'yii\i18n\PhpMessageSource',
 				'sourceLanguage' => 'en-US',
-				'basePath' => '@user/messages',
+				'basePath' => dirname(__DIR__) . '/messages',
 			];
 		}
 	}
