@@ -5,7 +5,7 @@ use yii\bootstrap\ActiveForm;
 
 $title = Yii::t('user', 'Login');
 
-$this->title = $title . '|' . Yii::$app->name;
+$this->title = $title . ' | ' . Yii::$app->name;
 
 ?>
 <h1><?= Html::encode($title) ?></h1>
