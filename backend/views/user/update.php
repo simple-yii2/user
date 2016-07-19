@@ -6,7 +6,7 @@ use yii\bootstrap\Tabs;
 
 $title = $model->item->username;
 
-$this->title = $title . '|' . Yii::$app->name;
+$this->title = $title . ' | ' . Yii::$app->name;
 
 $this->params['breadcrumbs'] = [
 	['label' => Yii::t('user', 'Users'), 'url' => ['index']],

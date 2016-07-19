@@ -6,7 +6,7 @@ use yii\grid\GridView;
 
 $title = Yii::t('user', 'Permissions');
 
-$this->title = $title . '|' . Yii::$app->name;
+$this->title = $title . ' | ' . Yii::$app->name;
 
 $this->params['breadcrumbs'] = [
 	$title,

@@ -5,7 +5,7 @@ use yii\helpers\Html;
 
 $title = Yii::t('user', 'Users');
 
-$this->title = $title . '|' . Yii::$app->name;
+$this->title = $title . ' | ' . Yii::$app->name;
 
 $this->params['breadcrumbs'] = [
 	$title,

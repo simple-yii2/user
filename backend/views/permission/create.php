@@ -4,7 +4,7 @@ use yii\helpers\Html;
 
 $title = Yii::t('user', 'Create permission');
 
-$this->title = $title . '|' . Yii::$app->name;
+$this->title = $title . ' | ' . Yii::$app->name;
 
 $this->params['breadcrumbs'] = [
 	['label' => Yii::t('user', 'Permissions'), 'url' => ['index']],
