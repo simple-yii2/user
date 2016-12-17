@@ -65,4 +65,5 @@ return [
 	'Current password' => 'Текущий пароль',
 	'New password' => 'Новый пароль',
 	'The password is entered incorrectly.' => 'Пароль введен неверно.',
+	'Settings' => 'Настройки',
 ];

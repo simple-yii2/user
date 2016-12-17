@@ -1,6 +1,6 @@
 <?php
 
-namespace user\backend\controllers;
+namespace cms\user\backend\controllers;
 
 use Yii;
 use yii\data\ArrayDataProvider;
@@ -10,8 +10,8 @@ use yii\web\BadRequestHttpException;
 use yii\web\Controller;
 use yii\web\ForbiddenHttpException;
 
-use user\backend\models\RoleForm;
-use user\common\models\User;
+use cms\user\backend\models\RoleForm;
+use cms\user\common\models\User;
 
 /**
  * Role manage controller
@@ -39,7 +39,7 @@ class RoleController extends Controller {
 	 */
 	public function actions() {
 		return [
-			'users' => 'user\common\actions\AutoComplete',
+			'users' => 'cms\user\common\actions\AutoComplete',
 		];
 	}
 

@@ -1,11 +1,11 @@
 <?php
 
-namespace user\common\models;
+namespace cms\user\common\models;
 
 use Yii;
 use yii\base\Model;
 
-use user\common\models\User;
+use cms\user\common\models\User;
 
 /**
  * User login form model

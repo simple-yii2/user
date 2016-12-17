@@ -1,13 +1,13 @@
 <?php
 
-namespace app\modules\user\frontend\controllers;
+namespace cms\user\frontend\controllers;
 
 use Yii;
 use yii\base\InvalidParamException;
 use yii\web\Controller;
 
-use app\modules\user\common\models\User;
-use app\modules\user\frontend\models\RegisterForm;
+use cms\user\common\models\User;
+use cms\user\frontend\models\RegisterForm;
 
 /**
  * Register controller

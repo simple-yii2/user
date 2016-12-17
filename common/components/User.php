@@ -1,6 +1,6 @@
 <?php
 
-namespace user\common\components;
+namespace cms\user\common\components;
 
 class User extends \yii\web\User {
 

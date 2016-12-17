@@ -1,10 +1,11 @@
 <?php
 
-namespace app\modules\user\frontend\models;
+namespace cms\user\frontend\models;
 
 use Yii;
-use app\modules\user\common\models\User;
 use yii\base\Model;
+
+use cms\user\common\models\User;
 
 /**
  * Password reset request form
@@ -42,7 +43,7 @@ class PasswordResetRequestForm extends Model {
 			[['email', 'verifyCode'], 'required'],
 			['email', 'email'],
 			['email', 'exist',
-				'targetClass' => '\app\modules\user\common\models\User',
+				'targetClass' => '\cms\user\common\models\User',
 				'filter' => ['active' => true],
 			],
 			['verifyCode', 'captcha'],

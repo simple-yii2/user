@@ -1,11 +1,11 @@
 <?php
 
-namespace user\backend;
+namespace cms\user\backend;
 
 use Yii;
 
-use user\common\components\AuthorRule;
-use user\common\models\User;
+use cms\user\common\components\AuthorRule;
+use cms\user\common\models\User;
 
 /**
  * User backend module
@@ -88,6 +88,16 @@ class Module extends \yii\base\Module {
 	 * @return array
 	 */
 	public static function getMenu($base)
+	{
+		return [];
+	}
+
+	/**
+	 * Making user module menu.
+	 * @param string $base route base
+	 * @return array
+	 */
+	public static function getUserMenu($base)
 	{
 		self::addTranslation();
 

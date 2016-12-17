@@ -1,6 +1,6 @@
 <?php
 
-namespace user\common\models;
+namespace cms\user\common\models;
 
 use Yii;
 use yii\base\NotSupportedException;
@@ -95,10 +95,12 @@ class User extends ActiveRecord implements IdentityInterface {
 			if (!$this->save()) return false;
 		}
 
-		return Yii::$app->mailer->compose('@app/modules/user/mail/confirm', ['user' => $this])
+		$content = Yii::$app->controller->renderFile(dirname(__DIR__) . '/../mail/confirm.php', ['user' => $this]);
+
+		return Yii::$app->mailer->compose()
 			->setTo($this->email)
-			->setFrom(Yii::$app->mailer->transport->getUsername())
 			->setSubject(Yii::t('user', 'E-mail confirmation'))
+			->setHtmlBody($content)
 			->send();
 	}
 
@@ -144,10 +146,12 @@ class User extends ActiveRecord implements IdentityInterface {
 			if (!$this->save()) return false;
 		}
 
-		return Yii::$app->mailer->compose('@app/modules/user/mail/reset', ['user' => $this])
+		$content = Yii::$app->controller->renderFile(dirname(__DIR__) . '/../mail/reset.php', ['user' => $this]);
+
+		return Yii::$app->mailer->compose()
 			->setTo($this->email)
-			->setFrom(Yii::$app->mailer->transport->getUsername())
 			->setSubject(Yii::t('user', 'Password reset'))
+			->setHtmlBody($content)
 			->send();
 	}
 

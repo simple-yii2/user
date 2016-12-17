@@ -31,7 +31,7 @@ $this->params['breadcrumbs'] = [
 			'value' => function($model, $key, $index, $column) {
 				$r = Html::encode($model->name);
 				if (!empty($model->description)) $r .= ' '.Html::tag('span', Html::encode('('.$model->description.')'), ['class' => 'text-muted']);
-				$children = \Yii::$app->authManager->getChildren($model->name);
+				$children = Yii::$app->authManager->getChildren($model->name);
 				foreach ($children as $child) {
 					$r .= ' '.Html::tag('span', Html::encode($child->name), [
 						'class' => $child->type == $child::TYPE_ROLE ? 'label label-primary' : 'label label-default',

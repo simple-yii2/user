@@ -3,10 +3,10 @@
 use yii\bootstrap\ActiveForm;
 use yii\helpers\Html;
 
-//title
-$title = $this->name = Yii::t('user', 'Change password');
+$title = Yii::t('user', 'Change password');
 
-//breadcrumbs
+$this->title = $title . ' | ' . Yii::$app->name;
+
 $this->params['breadcrumbs'] = [
 	$title,
 ];

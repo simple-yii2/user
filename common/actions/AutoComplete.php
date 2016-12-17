@@ -1,12 +1,12 @@
 <?php
 
-namespace user\common\actions;
+namespace cms\user\common\actions;
 
 use yii\base\Action;
 use yii\helpers\Html;
 use yii\helpers\Json;
 
-use user\common\models\User;
+use cms\user\common\models\User;
 
 /**
  * User autocomlete action

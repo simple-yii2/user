@@ -28,7 +28,6 @@ $(function() {
 		$.get($a.attr('href'), {
 			'email': $input.val()
 		}, function(data) {
-			console.log(data);
 			if (data.error) alert(data.error);
 			else {
 				var $tbody = $form.find('#role-users tbody'), $tr = $(data.content).find('#role-users tbody tr');

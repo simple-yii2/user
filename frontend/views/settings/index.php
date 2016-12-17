@@ -3,7 +3,9 @@
 use yii\bootstrap\ActiveForm;
 use yii\helpers\Html;
 
-$title = $this->name = Yii::t('user', 'Settings');
+$title = Yii::t('user', 'Settings');
+
+$this->title = $title . ' | ' . Yii::$app->name;
 
 $this->params['breadcrumbs'] = [
 	$title,

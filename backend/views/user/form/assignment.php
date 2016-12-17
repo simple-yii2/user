@@ -2,7 +2,7 @@
 
 use yii\helpers\Html;
 
-$auth = \Yii::$app->authManager;
+$auth = Yii::$app->authManager;
 
 //roles
 $roles = $auth->getRoles();

@@ -4,7 +4,10 @@ use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 use yii\captcha\Captcha;
 
-$title = $this->name = Yii::t('user', 'Registration');
+$title = Yii::t('user', 'Registration');
+
+$this->title = $title . ' | ' . Yii::$app->name;
+
 $this->params['breadcrumbs'] = [
 	$title,
 ];

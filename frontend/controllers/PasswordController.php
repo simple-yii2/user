@@ -1,11 +1,11 @@
 <?php
 
-namespace app\modules\user\frontend\controllers;
+namespace cms\user\frontend\controllers;
 
 use Yii;
 use yii\web\Controller;
 
-use app\modules\user\frontend\models\PasswordChangeForm;
+use cms\user\frontend\models\PasswordChangeForm;
 
 /**
  * Password change controller

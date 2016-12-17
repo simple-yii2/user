@@ -7,8 +7,8 @@ use yii\helpers\Url;
 use yii\jui\AutoComplete;
 use yii\web\JsExpression;
 
-use user\backend\assets\UserAsset;
-use user\common\models\User;
+use cms\user\backend\assets\UserAsset;
+use cms\user\common\models\User;
 
 //js
 UserAsset::register($this);

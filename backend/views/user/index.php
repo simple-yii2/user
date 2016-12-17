@@ -30,7 +30,7 @@ $this->params['breadcrumbs'] = [
 				$r = Html::encode($model->email);
 				$s = $model->username;
 				if ($s !== $model->email) $r .= ' '.Html::tag('span', Html::encode('('.$s.')'), ['class' => 'text-muted']);
-				foreach (\Yii::$app->authManager->getRolesByUser($model->id) as $role) if ($role->name !== 'author') {
+				foreach (Yii::$app->authManager->getRolesByUser($model->id) as $role) if ($role->name !== 'author') {
 					$r .= ' '.Html::tag('span', Html::encode($role->name), [
 						'class' => 'label label-primary',
 						'title' => $role->description,

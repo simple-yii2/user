@@ -1,6 +1,6 @@
 <?php
 
-namespace user\backend\controllers;
+namespace cms\user\backend\controllers;
 
 use Yii;
 use yii\filters\AccessControl;
@@ -9,9 +9,9 @@ use yii\web\BadRequestHttpException;
 use yii\web\Controller;
 use yii\web\ForbiddenHttpException;
 
-use user\backend\models\UserForm;
-use user\backend\models\UserSearch;
-use user\common\models\User;
+use cms\user\backend\models\UserForm;
+use cms\user\backend\models\UserSearch;
+use cms\user\common\models\User;
 
 /**
  * User manage controller

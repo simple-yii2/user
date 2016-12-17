@@ -1,6 +1,6 @@
 <?php
 
-namespace user\backend\controllers;
+namespace cms\user\backend\controllers;
 
 use Yii;
 use yii\data\ArrayDataProvider;
@@ -9,7 +9,7 @@ use yii\web\BadRequestHttpException;
 use yii\web\Controller;
 use yii\web\ForbiddenHttpException;
 
-use user\backend\models\PermissionForm;
+use cms\user\backend\models\PermissionForm;
 
 /**
  * Premission manage controller

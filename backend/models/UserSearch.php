@@ -1,11 +1,11 @@
 <?php
 
-namespace user\backend\models;
+namespace cms\user\backend\models;
 
 use Yii;
 use yii\data\ActiveDataProvider;
 
-use user\common\models\User;
+use cms\user\common\models\User;
 
 /**
  * User search model
