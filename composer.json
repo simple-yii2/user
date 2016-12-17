@@ -1,6 +1,6 @@
 {
     "name": "simple-yii2/user",
-    "description": "User module for Yii PHP Framework Version 2",
+    "description": "User module for Yii 2 framework",
     "type": "yii2-module",
     "keywords": ["yii2","module","user"],
     "license": "BSD-3-Clause",
