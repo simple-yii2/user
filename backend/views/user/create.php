@@ -4,7 +4,7 @@ use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 use yii\bootstrap\Tabs;
 
-$title = $model->getUsername();
+$title = Yii::t('user', 'Create user');
 
 $this->title = $title . ' | ' . Yii::$app->name;
 

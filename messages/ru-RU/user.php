@@ -37,6 +37,7 @@ return [
 	'Confirm message was sent on the specified E-mail.' => 'На указанный e-mail было отправлено письмо для подтверждения.',
 	'Failed to send a confirm message on the specified e-mail.' => 'Не удалось отправить письмо для подтверждения на указанный e-mail.',
 	'Confirm' => 'Повторите пароль',
+	'Administrator' => 'Администратор',
 	'First name' => 'Имя',
 	'Last name' => 'Фамилия',
 	'Verify code' => 'Проверочный код',
@@ -66,4 +67,5 @@ return [
 	'New password' => 'Новый пароль',
 	'The password is entered incorrectly.' => 'Пароль введен неверно.',
 	'Settings' => 'Настройки',
+	'Create user' => 'Добавить пользователя',
 ];

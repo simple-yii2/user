@@ -16,13 +16,14 @@ use cms\user\common\models\User;
 /**
  * User manage controller
  */
-class UserController extends Controller {
+class UserController extends Controller
+{
 
 	/**
-	 * Access control
-	 * @return array
+	 * @inheritdoc
 	 */
-	public function behaviors() {
+	public function behaviors()
+	{
 		return [
 			'access' => [
 				'class' => AccessControl::className(),
@@ -34,10 +35,11 @@ class UserController extends Controller {
 	}
 
 	/**
-	 * User list
-	 * @return void
+	 * List
+	 * @return string
 	 */
-	public function actionIndex() {
+	public function actionIndex()
+	{
 		$model = new UserSearch;
 
 		return $this->render('index', [
@@ -47,16 +49,38 @@ class UserController extends Controller {
 	}
 
 	/**
-	 * User editing
-	 * @param integer $id User id
-	 * @return void
+	 * Create
+	 * @return string
 	 */
-	public function actionUpdate($id) {
-		$item = User::findOne($id);
-		if ($item === null) throw new BadRequestHttpException(Yii::t('user', 'User not found.'));
+	public function actionCreate()
+	{
+		$object = new User;
 
-		$model = new UserForm(['item' => $item]);
-		if ($model->load(Yii::$app->request->post()) && $model->update()) {
+		$model = new UserForm($object, ['scenario' => 'create']);
+
+		if ($model->load(Yii::$app->getRequest()->post()) && $model->save()) {
+			Yii::$app->session->setFlash('success', Yii::t('user', 'Changes saved successfully.'));
+			return $this->redirect(['index']);
+		}
+
+		return $this->render('create', [
+			'model' => $model,
+		]);
+	}
+
+	/**
+	 * Update
+	 * @param integer $id User id
+	 * @return string
+	 */
+	public function actionUpdate($id)
+	{
+		$object = User::findOne($id);
+		if ($object === null)
+			throw new BadRequestHttpException(Yii::t('user', 'User not found.'));
+
+		$model = new UserForm($object);
+		if ($model->load(Yii::$app->getRequest()->post()) && $model->save()) {
 			Yii::$app->session->setFlash('success', Yii::t('user', 'Changes saved successfully.'));
 			return $this->redirect(['index']);
 		}

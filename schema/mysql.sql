@@ -56,7 +56,7 @@ create table if not exists `User`
 	`passwordResetToken` varchar(50),
 	`confirmToken` varchar(50),
 	`authKey` varchar(50),
-	`comment` varchar(100),
+	`comment` varchar(200),
 	primary key (`id`),
 	key `email` (`email`)
 ) engine InnoDB;

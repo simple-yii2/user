@@ -13,11 +13,18 @@ use yii\web\IdentityInterface;
 class User extends ActiveRecord implements IdentityInterface {
 
 	/**
-	 * Table name
-	 * @return string
+	 * @inheritdoc
 	 */
-	public static function tableName() {
+	public static function tableName()
+	{
 		return 'User';
+	}
+
+	public function init()
+	{
+		parent::init();
+
+		$this->active = true;
 	}
 
 	/**
@@ -80,8 +87,9 @@ class User extends ActiveRecord implements IdentityInterface {
 	 * Username getter
 	 * @return string
 	 */
-	public function getUsername() {
-		$name = trim($this->firstName.' '.$this->lastName);
+	public function getUsername()
+	{
+		$name = trim($this->firstName . ' ' . $this->lastName);
 		return empty($name) ? $this->email : $name;
 	}
 

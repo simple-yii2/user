@@ -14,6 +14,10 @@ $this->params['breadcrumbs'] = [
 ?>
 <h1><?= Html::encode($title) ?></h1>
 
+<div class="btn-toolbar" role="toolbar">
+	<?= Html::a(Yii::t('user', 'Create'), ['create'], ['class' => 'btn btn-primary']) ?>
+</div>
+
 <?= GridView::widget([
 	'dataProvider' => $dataProvider,
 	'filterModel' => $model,

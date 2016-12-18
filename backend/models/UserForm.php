@@ -5,10 +5,18 @@ namespace cms\user\backend\models;
 use Yii;
 use yii\base\Model;
 
+use cms\user\common\models\User;
+
 /**
  * User editting form
  */
-class UserForm extends Model {
+class UserForm extends Model
+{
+
+	/**
+	 * @var boolean
+	 */
+	public $admin;
 
 	/**
 	 * @var string Email
@@ -21,6 +29,16 @@ class UserForm extends Model {
 	public $active;
 
 	/**
+	 * @var string
+	 */
+	public $firstName;
+
+	/**
+	 * @var string
+	 */
+	public $lastName;
+
+	/**
 	 * @var string Comment
 	 */
 	public $comment;
@@ -28,92 +46,128 @@ class UserForm extends Model {
 	/**
 	 * @var array Roles
 	 */
-	public $roles = [];
+	public $roles;
 
 	/**
-	 * @var user\common\models\User User model
+	 * @var \cms\user\common\models\User
 	 */
-	public $item;
+	private $_object;
 
 	/**
-	 * Attribute names
-	 * @return array
+	 * @inheritdoc
+	 * @param \cms\user\common\models\User $object 
 	 */
-	public function attributeLabels() {
+	public function __construct(\cms\user\common\models\User $object, $config = [])
+	{
+		$this->_object = $object;
+
+		//attributes
+		$this->admin = $object->admin == 0 ? '0' : '1';
+		$this->email = $object->email;
+		$this->active = $object->active == 0 ? '0' : '1';
+		$this->firstName = $object->firstName;
+		$this->lastName = $object->lastName;
+		$this->comment = $object->comment;
+
+		$this->roles = array_keys(Yii::$app->authManager->getAssignments($object->id));
+
+		parent::__construct($config);
+	}
+
+	/**
+	 * @inheritdoc
+	 */
+	public function attributeLabels()
+	{
 		return [
+			'admin' => Yii::t('user', 'Administrator'),
 			'email' => Yii::t('user', 'E-mail'),
 			'active' => Yii::t('user', 'Active'),
+			'firstName' => Yii::t('user', 'First name'),
+			'lastName' => Yii::t('user', 'Last name'),
 			'comment' => Yii::t('user', 'Comment'),
 			'roles' => Yii::t('user', 'Roles'),
 		];
 	}
 
 	/**
-	 * Validation rules
-	 * @return array
+	 * @inheritdoc
 	 */
-	public function rules() {
+	public function rules()
+	{
 		return [
-			['active', 'boolean'],
-			['comment', 'string'],
+			[['admin', 'active'], 'boolean'],
+			['email', 'email', 'on' => 'create'],
+			['email', 'required', 'on' => 'create'],
+			['email', function($attribute, $params) {
+				if (User::find()->where(['email' => $this->email])->count() > 0) {
+					$this->addError($attribute, Yii::t('user', 'The entered e-mail is already in use.'));
+				}
+			}, 'on' => 'create'],
+			[['firstName', 'lastName'], 'string', 'max' => 50],
+			['comment', 'string', 'max' => 200],
 			['roles', 'each', 'rule' => ['string']],
 		];
 	}
 
 	/**
-	 * Initialization
-	 * Set default values
-	 * @return void
+	 * @inheritdoc
 	 */
-	public function init() {
-		parent::init();
-		
-		if ($this->item !== null) {
-			$this->setAttributes([
-				'email' => $this->item->email,
-				'active' => $this->item->active,
-				'comment' => $this->item->comment,
-			], false);
-
-			$this->roles = array_keys(Yii::$app->authManager->getAssignments($this->item->id));
-		}
-	}
-
-	/**
-	 * Override
-	 */
-	public function setAttributes($values, $safeOnly = true) {
+	public function setAttributes($values, $safeOnly = true)
+	{
 		parent::setAttributes($values, $safeOnly);
-		if ($this->roles === "") $this->roles = [];
+
+		if ($this->roles === '')
+			$this->roles = [];
 	}
 
 	/**
-	 * Save changes
+	 * User name getter
+	 * @return string
+	 */
+	public function getUsername()
+	{
+		$name = trim($this->firstName . ' ' . $this->lastName);
+		return empty($name) ? $this->email : $name;
+	}
+
+	/**
+	 * Save
 	 * @return boolean
 	 */
-	public function update() {
-		if ($this->item === null) return false;
+	public function save()
+	{
+		if (!$this->validate())
+			return false;
 
-		$this->item->setAttributes([
-			'active' => $this->active,
-			'comment' => $this->comment,
-		], false);
-		if (!$this->item->save(false)) return false;
+		$object = $this->_object;
 
-		$auth = Yii::$app->authManager;
+		$object->admin = $this->admin == 1;
+		$object->email = $this->email;
+		$object->active = $this->active == 1;
+		$object->firstName = $this->firstName;
+		$object->lastName = $this->lastName;
+		$object->comment = $this->comment;
+
+		if (!$object->save(false))
+			return false;
 
 		//roles
-		//old
+		$auth = Yii::$app->authManager;
 		$oldRoles = [];
-		$names = array_keys($auth->getAssignments($this->item->id));
-		foreach ($names as $name) $oldRoles[$name] = $auth->getRole($name);
-		//new
+		$names = array_keys($auth->getAssignments($object->id));
+		foreach ($names as $name)
+			$oldRoles[$name] = $auth->getRole($name);
 		$roles = [];
-		foreach ($this->roles as $name) $roles[$name] = $auth->getRole($name);
+		foreach ($this->roles as $name)
+			$roles[$name] = $auth->getRole($name);
+
 		//revoke
-		foreach (array_diff_key($oldRoles, $roles) as $role) $auth->revoke($role, $this->item->id);
+		foreach (array_diff_key($oldRoles, $roles) as $role)
+			$auth->revoke($role, $object->id);
 		//assign
-		foreach (array_diff_key($roles, $oldRoles) as $role) $auth->assign($role, $this->item->id);
+		foreach (array_diff_key($roles, $oldRoles) as $role)
+			$auth->assign($role, $object->id);
 
 		return true;
 	}
