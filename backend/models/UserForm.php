@@ -127,8 +127,7 @@ class UserForm extends Model
 	 */
 	public function getUsername()
 	{
-		$name = trim($this->firstName . ' ' . $this->lastName);
-		return empty($name) ? $this->email : $name;
+		return $this->_object->getUsername();
 	}
 
 	/**
@@ -141,6 +140,7 @@ class UserForm extends Model
 			return false;
 
 		$object = $this->_object;
+		$isNewRecord = $object->getIsNewRecord();
 
 		$object->admin = $this->admin == 1;
 		$object->email = $this->email;
@@ -162,6 +162,12 @@ class UserForm extends Model
 		foreach ($this->roles as $name)
 			$roles[$name] = $auth->getRole($name);
 
+		//author
+		if ($isNewRecord) {
+			$author = $auth->getRole('author');
+			if ($author !== null)
+				$auth->assign($author, $object->id);
+		}
 		//revoke
 		foreach (array_diff_key($oldRoles, $roles) as $role)
 			$auth->revoke($role, $object->id);
