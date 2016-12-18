@@ -78,7 +78,7 @@ class PermissionController extends Controller
 
 		$model = new PermissionForm(['item' => $item]);
 		if ($model->load(Yii::$app->request->post()) && $model->update()) {
-			Yii::$app->session->setFlash('success', Yii::t('Changes saved successfully.'));
+			Yii::$app->session->setFlash('success', Yii::t('user', 'Changes saved successfully.'));
 			return $this->redirect(['index']);
 		}
 
