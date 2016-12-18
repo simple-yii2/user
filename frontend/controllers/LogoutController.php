@@ -7,7 +7,8 @@ use yii\web\Controller;
 /**
  * Logout controller
  */
-class LogoutController extends Controller {
+class LogoutController extends Controller
+{
 
 	public function actions() {
 		return [

@@ -5,12 +5,11 @@ namespace cms\user\frontend\models;
 use Yii;
 use yii\base\Model;
 
-use cms\user\common\models\User;
-
 /**
  * Password change form
  */
-class PasswordChangeForm extends Model {
+class PasswordChangeForm extends Model
+{
 
 	/**
 	 * @var string Old password
@@ -28,15 +27,26 @@ class PasswordChangeForm extends Model {
 	public $confirm;
 
 	/**
-	 * @var app\modules\user\common\models\User User object
+	 * @var cms\user\common\models\User
 	 */
-	private $_user;
+	private $_object;
 
 	/**
-	 * Attribute labels
-	 * @return array
+	 * @inheritdoc
+	 * @param cms\user\common\models\User $object 
 	 */
-	public function attributeLabels() {
+	public function __construct(\cms\user\common\models\User $object, $config = [])
+	{
+		$this->_object = $object;
+
+		parent::__construct($config);
+	}
+
+	/**
+	 * @inheritdoc
+	 */
+	public function attributeLabels()
+	{
 		return [
 			'oldPassword' => Yii::t('user', 'Current password'),
 			'password' => Yii::t('user', 'New password'),
@@ -45,17 +55,15 @@ class PasswordChangeForm extends Model {
 	}
 
 	/**
-	 * Validation rules
-	 * @return array
+	 * @inheritdoc
 	 */
-	public function rules() {
+	public function rules()
+	{
 		return [
 			[['oldPassword', 'password'], 'required'],
 			['oldPassword', function($attribute) {
 				if (!$this->hasErrors()) {
-					$user = $this->getUser();
-
-					if (!$user->validatePassword($this->$attribute)) {
+					if (!$this->_object->validatePassword($this->$attribute)) {
 						$this->addError($attribute, Yii::t('user', 'The password is entered incorrectly.'));
 					}
 				}
@@ -67,24 +75,19 @@ class PasswordChangeForm extends Model {
 	}
 
 	/**
-	 * User getter
-	 * @return yii\web\IdentityInterface
-	 */
-	public function getUser() {
-		if ($this->_user !== null) return $this->_user;
-
-		return $this->_user = Yii::$app->user->identity;
-	}
-
-	/**
-	 * Password change function
+	 * Password change
 	 * @return boolean
 	 */
-	public function changePassword() {
-		$user = $this->getUser();
-		$user->setPassword($this->password);
+	public function changePassword()
+	{
+		if (!$this->validate())
+			return false;
+		
+		$object = $this->_object;
 
-		return $user->save();
+		$object->setPassword($this->password);
+
+		return $object->save();
 	}
 
 }

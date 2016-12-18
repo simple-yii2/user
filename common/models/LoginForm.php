@@ -10,7 +10,8 @@ use cms\user\common\models\User;
 /**
  * User login form model
  */
-class LoginForm extends Model {
+class LoginForm extends Model
+{
 
 	/**
 	 * @var string User e-mail
@@ -28,15 +29,15 @@ class LoginForm extends Model {
 	public $rememberMe;
 
 	/**
-	 * @var app\modules\user\common\models\User
+	 * @var \cms\user\common\models\User
 	 */
 	private $_user = false;
 
 	/**
-	 * Determite labels for model attributes
-	 * @return array
+	 * @inheritdoc
 	 */
-	public function attributeLabels() {
+	public function attributeLabels()
+	{
 		return [
 			'email' => Yii::t('user', 'E-mail'),
 			'password' => Yii::t('user', 'Password'),
@@ -45,10 +46,10 @@ class LoginForm extends Model {
 	}
 
 	/**
-	 * Validation rules
-	 * @return array
+	 * @inheritdoc
 	 */
-	public function rules() {
+	public function rules()
+	{
 		return [
 			[['email', 'password'], 'required'],
 			['rememberMe', 'boolean'],
@@ -63,7 +64,8 @@ class LoginForm extends Model {
 	 * @param array $params 
 	 * @return void
 	 */
-	public function validateActive($attribute, $params) {
+	public function validateActive($attribute, $params)
+	{
 		if (!$this->hasErrors()) {
 			$user = $this->getUser();
 
@@ -79,7 +81,8 @@ class LoginForm extends Model {
 	 * @param array $params 
 	 * @return void
 	 */
-	public function validatePassword($attribute, $params) {
+	public function validatePassword($attribute, $params)
+	{
 		if (!$this->hasErrors()) {
 			$user = $this->getUser();
 
@@ -93,19 +96,20 @@ class LoginForm extends Model {
 	 * Login
 	 * @return boolean
 	 */
-	public function login() {
-		if ($this->validate()) {
-			return $this->getUser()->login($this->rememberMe ? 3600*24*30 : 0);
-		} else {
+	public function login()
+	{
+		if (!$this->validate())
 			return false;
-		}
+
+		return $this->getUser()->login($this->rememberMe ? 3600*24*30 : 0);
 	}
 
 	/**
 	 * User getter
-	 * @return app\modules\user\common\models\User
+	 * @return \cms\user\common\models\User
 	 */
-	public function getUser() {
+	public function getUser()
+	{
 		if ($this->_user === false) {
 			$this->_user = User::findByEmail($this->email);
 		}

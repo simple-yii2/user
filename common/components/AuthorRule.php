@@ -7,7 +7,8 @@ use yii\rbac\Rule;
 /**
  * Author rule
  */
-class AuthorRule extends Rule {
+class AuthorRule extends Rule
+{
 
 	/**
 	 * @var string Name of author rule
@@ -19,10 +20,11 @@ class AuthorRule extends Rule {
 	 * @param type $user 
 	 * @param type $item 
 	 * @param type $params 
-	 * @return type
+	 * @return boolean
 	 */
-	public function execute($user, $item, $params) {
-		return isset($params[0]) && ($params[0] instanceof \yii\db\BaseActiveRecord) && $params[0]->hasAttribute('user_id') && $params->user_id == $user;
+	public function execute($user, $item, $params)
+	{
+		return isset($params[0]) && ($params[0] instanceof \yii\db\BaseActiveRecord) && $params[0]->hasAttribute('user_id') && $params[0]->user_id == $user;
 	}
 
 }

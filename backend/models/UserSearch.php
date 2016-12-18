@@ -10,13 +10,24 @@ use cms\user\common\models\User;
 /**
  * User search model
  */
-class UserSearch extends User {
+class UserSearch extends User
+{
 
 	/**
-	 * Search rules
-	 * @return array
+	 * @inheritdoc
 	 */
-	public function rules() {
+	public function attributeLabels()
+	{
+		return [
+			'email' => Yii::t('user', 'E-mail'),
+		];
+	}
+
+	/**
+	 * @inheritdoc
+	 */
+	public function rules()
+	{
 		return [
 			['email', 'string'],
 		];
@@ -25,11 +36,11 @@ class UserSearch extends User {
 	/**
 	 * Search function
 	 * @param array $params Attributes array
-	 * @return yii\data\ActiveDataProvider
+	 * @return \yii\data\ActiveDataProvider
 	 */
 	public function search($params) {
 		//ActiveQuery
-		$query = User::find()->andWhere(['not', ['id' => Yii::$app->getUser()->id]]);
+		$query = static::find()->andWhere(['not', ['email' => 'admin']]);
 
 		$dataProvider = new ActiveDataProvider([
 			'query' => $query,

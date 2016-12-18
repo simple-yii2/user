@@ -11,7 +11,8 @@ use cms\user\common\models\User;
 /**
  * Password reset form
  */
-class PasswordResetForm extends Model {
+class PasswordResetForm extends Model
+{
 
 	/**
 	 * @var string Password
@@ -24,32 +25,26 @@ class PasswordResetForm extends Model {
 	public $confirm;
 
 	/**
-	 * @var app\modules\user\common\models\User User object
+	 * @var cms\user\common\models\User
 	 */
-	private $_user;
+	private $_object;
 
 	/**
-	 * Constructor
-	 * @param string $token 
-	 * @param array $config 
-	 * @return void
+	 * @inheritdoc
+	 * @param cms\user\common\models\User $object 
 	 */
-	public function __construct($token, $config = []) {
-		if (empty($token) || !is_string($token)) {
-			throw new InvalidParamException('Password reset token cannot be blank.');
-		}
-		$this->_user = User::findByPasswordResetToken($token);
-		if (!$this->_user) {
-			throw new InvalidParamException('Wrong password reset token.');
-		}
+	public function __construct($object, $config = [])
+	{
+		$this->_object = $object;
+
 		parent::__construct($config);
 	}
 
 	/**
-	 * Attribute labels
-	 * @return array
+	 * @inheritdoc
 	 */
-	public function attributeLabels() {
+	public function attributeLabels()
+	{
 		return [
 			'password' => Yii::t('user', 'Password'),
 			'confirm' => Yii::t('user', 'Confirm'),
@@ -57,10 +52,10 @@ class PasswordResetForm extends Model {
 	}
 
 	/**
-	 * Validation rules
-	 * @return array
+	 * @inheritdoc
 	 */
-	public function rules() {
+	public function rules()
+	{
 		return [
 			['password', 'required'],
 			['password', 'string', 'min' => 4],
@@ -73,11 +68,17 @@ class PasswordResetForm extends Model {
 	 * Password reset
 	 * @return boolean
 	 */
-	public function resetPassword() {
-		$user = $this->_user;
-		$user->setPassword($this->password);
-		$user->removePasswordResetToken();
+	public function resetPassword()
+	{
+		if (!$this->validate())
+			return false;
 
-		return $user->save();
+		$object = $this->_object;
+
+		$object->setPassword($this->password);
+		$object->removePasswordResetToken();
+
+		return $object->save();
 	}
+
 }

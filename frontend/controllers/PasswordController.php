@@ -10,21 +10,26 @@ use cms\user\frontend\models\PasswordChangeForm;
 /**
  * Password change controller
  */
-class PasswordController extends Controller {
+class PasswordController extends Controller
+{
 
 	/**
 	 * Password change
 	 * @return void
 	 */
-	public function actionIndex() {
+	public function actionIndex()
+	{
+		$user = Yii::$app->getUser();
+
 		//check login
-		if (Yii::$app->user->isGuest) return Yii::$app->user->loginRequired();
+		if ($user->isGuest)
+			return $user->loginRequired();
 
 		//model
-		$model = new PasswordChangeForm;
+		$model = new PasswordChangeForm($user->getIdentity());
 
 		//read user data
-		if ($model->load(Yii::$app->request->post()) && $model->validate() && $model->changePassword()) {
+		if ($model->load(Yii::$app->request->post()) && $model->changePassword()) {
 			Yii::$app->getSession()->setFlash('success', Yii::t('user', 'The new password has been set.'));
 
 			return $this->redirect(['settings/index']);

@@ -10,7 +10,8 @@ use cms\user\common\models\User;
 /**
  * Password reset request form
  */
-class PasswordResetRequestForm extends Model {
+class PasswordResetRequestForm extends Model
+{
 
 	/**
 	 * @var string User e-mail
@@ -23,10 +24,10 @@ class PasswordResetRequestForm extends Model {
 	public $verifyCode;
 
 	/**
-	 * Attribute labels
-	 * @return array
+	 * @inheritdoc
 	 */
-	public function attributeLabels() {
+	public function attributeLabels()
+	{
 		return [
 			'email' => Yii::t('user', 'E-mail'),
 			'verifyCode' => Yii::t('user', 'Verify code'),
@@ -34,10 +35,10 @@ class PasswordResetRequestForm extends Model {
 	}
 
 	/**
-	 * Validation rules
-	 * @return array
+	 * @inheritdoc
 	 */
-	public function rules() {
+	public function rules()
+	{
 		return [
 			['email', 'filter', 'filter' => 'trim'],
 			[['email', 'verifyCode'], 'required'],
@@ -54,14 +55,17 @@ class PasswordResetRequestForm extends Model {
 	 * Send password reset email
 	 * @return boolean
 	 */
-	public function sendEmail() {
+	public function sendEmail()
+	{
 		$user = User::findOne([
 			'active' => true,
 			'email' => $this->email,
 		]);
 
-		if ($user !== null) return $user->sendResetPasswordEmail();
+		if ($user !== null)
+			return $user->sendResetPasswordEmail();
 
 		return false;
 	}
+	
 }

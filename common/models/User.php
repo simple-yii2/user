@@ -10,7 +10,8 @@ use yii\web\IdentityInterface;
 /**
  * User acrive record
  */
-class User extends ActiveRecord implements IdentityInterface {
+class User extends ActiveRecord implements IdentityInterface
+{
 
 	/**
 	 * @inheritdoc
@@ -20,24 +21,15 @@ class User extends ActiveRecord implements IdentityInterface {
 		return 'User';
 	}
 
+	/**
+	 * @inheritdoc
+	 */
 	public function init()
 	{
 		parent::init();
 
 		$this->active = true;
-	}
-
-	/**
-	 * Attribute labels
-	 * @return array
-	 */
-	public function attributeLabels() {
-		return [
-			'email' => Yii::t('user', 'E-mail'),
-			'firstName' => Yii::t('user', 'First name'),
-			'lastName' => Yii::t('user', 'Last name'),
-			'mailing' => Yii::t('user', 'Notify about promotions, discounts, news'),
-		];
+		$this->mailing = true;
 	}
 
 	/**
@@ -45,7 +37,8 @@ class User extends ActiveRecord implements IdentityInterface {
 	 * @param sring $email 
 	 * @return User
 	 */
-	public static function findByEmail($email) {
+	public static function findByEmail($email)
+	{
 		return static::findOne(['email' => $email]);
 	}
 
@@ -54,7 +47,8 @@ class User extends ActiveRecord implements IdentityInterface {
 	 * @param string $password 
 	 * @return void
 	 */
-	public function setPassword($password) {
+	public function setPassword($password)
+	{
 		$this->passwordHash = Yii::$app->security->generatePasswordHash($password);
 	}
 
@@ -63,7 +57,8 @@ class User extends ActiveRecord implements IdentityInterface {
 	 * @param string $password 
 	 * @return boolean
 	 */
-	public function validatePassword($password) {
+	public function validatePassword($password)
+	{
 		return Yii::$app->security->validatePassword($password, $this->passwordHash);
 	}
 
@@ -97,7 +92,8 @@ class User extends ActiveRecord implements IdentityInterface {
 	 * Send confirm e-mail
 	 * @return boolean
 	 */
-	public function sendConfirmEmail() {
+	public function sendConfirmEmail()
+	{
 		if (empty($this->confirmToken)) {
 			$this->confirmToken = Yii::$app->security->generateRandomString().'_'.time();
 			if (!$this->save()) return false;
@@ -117,7 +113,8 @@ class User extends ActiveRecord implements IdentityInterface {
 	 * @param string $token 
 	 * @return User
 	 */
-	public static function findByConfirmToken($token) {
+	public static function findByConfirmToken($token)
+	{
 		return static::findOne(['confirmToken' => $token]);
 	}
 
@@ -125,7 +122,8 @@ class User extends ActiveRecord implements IdentityInterface {
 	 * Removes e-mail confirm token
 	 * @return void
 	 */
-	public function removeConfirmToken() {
+	public function removeConfirmToken()
+	{
 		$this->confirmToken = null;
 	}
 
@@ -134,7 +132,8 @@ class User extends ActiveRecord implements IdentityInterface {
 	 * @param string $token 
 	 * @return boolean
 	 */
-	public static function isPasswordResetTokenValid($token) {
+	public static function isPasswordResetTokenValid($token)
+	{
 		if (empty($token)) {
 			return false;
 		}
@@ -148,7 +147,8 @@ class User extends ActiveRecord implements IdentityInterface {
 	 * Send reset password e-mail
 	 * @return boolean
 	 */
-	public function sendResetPasswordEmail() {
+	public function sendResetPasswordEmail()
+	{
 		if (!static::isPasswordResetTokenValid($this->passwordResetToken)) {
 			$this->passwordResetToken = Yii::$app->security->generateRandomString().'_'.time();
 			if (!$this->save()) return false;
@@ -168,7 +168,8 @@ class User extends ActiveRecord implements IdentityInterface {
 	 * @param string $token 
 	 * @return User
 	 */
-	public static function findByPasswordResetToken($token) {
+	public static function findByPasswordResetToken($token)
+	{
 		if (!static::isPasswordResetTokenValid($token)) {
 			return null;
 		}
@@ -180,7 +181,8 @@ class User extends ActiveRecord implements IdentityInterface {
 	 * Removes password reset token
 	 * @return void
 	 */
-	public function removePasswordResetToken() {
+	public function removePasswordResetToken()
+	{
 		$this->passwordResetToken = null;
 	}
 
@@ -197,7 +199,8 @@ class User extends ActiveRecord implements IdentityInterface {
 	 * @inheritdoc
 	 * @see yii\web\IdentityInterface
 	 */
-	public static function findIdentity($id) {
+	public static function findIdentity($id)
+	{
 		return static::findOne(['id' => $id]);
 	}
 
@@ -205,7 +208,8 @@ class User extends ActiveRecord implements IdentityInterface {
 	 * @inheritdoc
 	 * @see yii\web\IdentityInterface
 	 */
-	public static function findIdentityByAccessToken($token, $type = null) {
+	public static function findIdentityByAccessToken($token, $type = null)
+	{
 		throw new NotSupportedException('"findIdentityByAccessToken" is not implemented.');
 	}
 
@@ -213,7 +217,8 @@ class User extends ActiveRecord implements IdentityInterface {
 	 * @inheritdoc
 	 * @see yii\web\IdentityInterface
 	 */
-	public function getId() {
+	public function getId()
+	{
 		return $this->getPrimaryKey();
 	}
 
@@ -221,7 +226,8 @@ class User extends ActiveRecord implements IdentityInterface {
 	 * @inheritdoc
 	 * @see yii\web\IdentityInterface
 	 */
-	public function getAuthKey() {
+	public function getAuthKey()
+	{
 		return $this->authKey;
 	}
 
@@ -229,7 +235,8 @@ class User extends ActiveRecord implements IdentityInterface {
 	 * @inheritdoc
 	 * @see yii\web\IdentityInterface
 	 */
-	public function validateAuthKey($authKey) {
+	public function validateAuthKey($authKey)
+	{
 		return $this->getAuthKey() === $authKey;
 	}
 

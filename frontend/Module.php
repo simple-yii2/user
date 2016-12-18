@@ -4,7 +4,8 @@ namespace cms\user\frontend;
 
 use Yii;
 
-class Module extends \yii\base\Module {
+class Module extends \yii\base\Module
+{
 
 	/**
 	 * @inheritdoc
