@@ -8,7 +8,8 @@ use yii\base\Model;
 /**
  * Base model for roles and permissions
  */
-abstract class RbacForm extends Model {
+abstract class RbacForm extends Model
+{
 
 	/**
 	 * @var string Name
@@ -26,10 +27,10 @@ abstract class RbacForm extends Model {
 	public $item;
 
 	/**
-	 * Attribute labels
-	 * @return array
+	 * @inheritdoc
 	 */
-	public function attributeLabels() {
+	public function attributeLabels()
+	{
 		return [
 			'name' => Yii::t('user', 'Name'),
 			'description' => Yii::t('user', 'Description'),
@@ -37,10 +38,10 @@ abstract class RbacForm extends Model {
 	}
 
 	/**
-	 * Validation rules
-	 * @return array
+	 * @inheritdoc
 	 */
-	public function rules() {
+	public function rules()
+	{
 		return [
 			['name', 'required'],
 			['description', 'string'],
@@ -55,11 +56,10 @@ abstract class RbacForm extends Model {
 	}
 
 	/**
-	 * Initialization
-	 * Set default values
-	 * @return void
+	 * @inheritdoc
 	 */
-	public function init() {
+	public function init()
+	{
 		parent::init();
 		
 		if ($this->item !== null) $this->setAttributes([
@@ -69,16 +69,17 @@ abstract class RbacForm extends Model {
 	}
 
 	/**
-	 * Permission creation
+	 * Rbac creation
 	 * @return boolean
 	 */
 	abstract public function create();
 
 	/**
-	 * Permission updating
+	 * Rbac updating
 	 * @return boolean
 	 */
-	public function update() {
+	public function update()
+	{
 		if ($this->item === null) return false;
 
 		if (!$this->validate()) return false;

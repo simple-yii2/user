@@ -7,20 +7,20 @@ use yii\data\ArrayDataProvider;
 use yii\filters\AccessControl;
 use yii\web\BadRequestHttpException;
 use yii\web\Controller;
-use yii\web\ForbiddenHttpException;
 
 use cms\user\backend\models\PermissionForm;
 
 /**
  * Premission manage controller
  */
-class PermissionController extends Controller {
+class PermissionController extends Controller
+{
 
 	/**
-	 * Access control
-	 * @return array
+	 * @inheritdoc
 	 */
-	public function behaviors() {
+	public function behaviors()
+	{
 		return [
 			'access' => [
 				'class' => AccessControl::className(),
@@ -35,7 +35,8 @@ class PermissionController extends Controller {
 	 * Permission list
 	 * @return void
 	 */
-	public function actionIndex() {
+	public function actionIndex()
+	{
 		$items = Yii::$app->authManager->getPermissions();
 		unset($items['own']);
 
@@ -53,7 +54,8 @@ class PermissionController extends Controller {
 	 * Permission creating
 	 * @return void
 	 */
-	public function actionCreate() {
+	public function actionCreate()
+	{
 		$model = new PermissionForm;
 		if ($model->load(Yii::$app->request->post()) && $model->create()) {
 			return $this->redirect(['index']);
@@ -69,7 +71,8 @@ class PermissionController extends Controller {
 	 * @param string $name Permission name
 	 * @return void
 	 */
-	public function actionUpdate($name) {
+	public function actionUpdate($name)
+	{
 		$item = Yii::$app->authManager->getPermission($name);
 		if ($item === null) throw new BadRequestHttpException(Yii::t('user', 'Premission was not found.'));
 
@@ -89,7 +92,8 @@ class PermissionController extends Controller {
 	 * @param string $name Permission name
 	 * @return void
 	 */
-	public function actionDelete($name) {
+	public function actionDelete($name)
+	{
 		$auth = Yii::$app->authManager;
 		
 		$item = $auth->getPermission($name);

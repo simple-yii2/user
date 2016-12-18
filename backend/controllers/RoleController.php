@@ -8,7 +8,6 @@ use yii\filters\AccessControl;
 use yii\helpers\Json;
 use yii\web\BadRequestHttpException;
 use yii\web\Controller;
-use yii\web\ForbiddenHttpException;
 
 use cms\user\backend\models\RoleForm;
 use cms\user\common\models\User;
@@ -16,13 +15,14 @@ use cms\user\common\models\User;
 /**
  * Role manage controller
  */
-class RoleController extends Controller {
+class RoleController extends Controller
+{
 
 	/**
-	 * Access control
-	 * @return array
+	 * @inheritdoc
 	 */
-	public function behaviors() {
+	public function behaviors()
+	{
 		return [
 			'access' => [
 				'class' => AccessControl::className(),
@@ -37,7 +37,8 @@ class RoleController extends Controller {
 	 * Predefined actions
 	 * @return array
 	 */
-	public function actions() {
+	public function actions()
+	{
 		return [
 			'users' => 'cms\user\common\actions\AutoComplete',
 		];
@@ -47,7 +48,8 @@ class RoleController extends Controller {
 	 * Role list
 	 * @return void
 	 */
-	public function actionIndex() {
+	public function actionIndex()
+	{
 		$items = Yii::$app->authManager->getRoles();
 		unset($items['author']);
 
@@ -65,7 +67,8 @@ class RoleController extends Controller {
 	 * Role creating
 	 * @return void
 	 */
-	public function actionCreate() {
+	public function actionCreate()
+	{
 		$model = new RoleForm;
 
 		if ($model->load(Yii::$app->getRequest()->post()) && $model->create()) {
@@ -83,7 +86,8 @@ class RoleController extends Controller {
 	 * @param string $name Role name
 	 * @return void
 	 */
-	public function actionUpdate($name) {
+	public function actionUpdate($name)
+	{
 		$item = Yii::$app->authManager->getRole($name);
 		if ($item === null) throw new BadRequestHttpException(Yii::t('user', 'Role not found.'));
 
@@ -103,7 +107,8 @@ class RoleController extends Controller {
 	 * @param string $name Role name
 	 * @return void
 	 */
-	public function actionDelete($name) {
+	public function actionDelete($name)
+	{
 		$auth = Yii::$app->authManager;
 
 		$item = $auth->getRole($name);
@@ -119,7 +124,8 @@ class RoleController extends Controller {
 	 * @param string $email User email
 	 * @return void
 	 */
-	public function actionAssign($email) {
+	public function actionAssign($email)
+	{
 		//user
 		$user = User::findByEmail($email);
 		if ($user === null) return Json::encode([

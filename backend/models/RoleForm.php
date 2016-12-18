@@ -7,7 +7,8 @@ use Yii;
 /**
  * Role form
  */
-class RoleForm extends PermissionForm {
+class RoleForm extends PermissionForm
+{
 
 	/**
 	 * @var array Roles
@@ -25,10 +26,10 @@ class RoleForm extends PermissionForm {
 	public $users = [];
 
 	/**
-	 * Attribute labels
-	 * @return array
+	 * @inheritdoc
 	 */
-	public function attributeLabels() {
+	public function attributeLabels()
+	{
 		return array_merge(parent::attributeLabels(), [
 			'roles' => Yii::t('user', 'Roles'),
 			'permissions' => Yii::t('user', 'Permissions'),
@@ -36,10 +37,10 @@ class RoleForm extends PermissionForm {
 	}
 
 	/**
-	 * Validation rules
-	 * @return array
+	 * @inheritdoc
 	 */
-	public function rules() {
+	public function rules()
+	{
 		return array_merge(parent::rules(), [
 			[['roles', 'permissions'], 'each', 'rule' => ['string']],
 			['users', 'each', 'rule' => ['integer']],
@@ -47,11 +48,10 @@ class RoleForm extends PermissionForm {
 	}
 
 	/**
-	 * Initialization
-	 * Set default values
-	 * @return void
+	 * @inheritdoc
 	 */
-	public function init() {
+	public function init()
+	{
 		parent::init();
 
 		if ($this->item !== null) {
@@ -66,20 +66,23 @@ class RoleForm extends PermissionForm {
 	}
 
 	/**
-	 * Override
+	 * @inheritdoc
 	 */
-	public function setAttributes($values, $safeOnly = true) {
+	public function setAttributes($values, $safeOnly = true)
+	{
 		parent::setAttributes($values, $safeOnly);
-		if ($this->roles === "") $this->roles = [];
-		if ($this->permissions === "") $this->permissions = [];
-		if ($this->users === "") $this->users = [];
+
+		if ($this->roles === '') $this->roles = [];
+		if ($this->permissions === '') $this->permissions = [];
+		if ($this->users === '') $this->users = [];
 	}
 
 	/**
 	 * Role creation
 	 * @return boolean
 	 */
-	public function create() {
+	public function create()
+	{
 		if (!$this->validate()) return false;
 
 		$auth = Yii::$app->authManager;
@@ -96,7 +99,8 @@ class RoleForm extends PermissionForm {
 	 * Role updating
 	 * @return boolean
 	 */
-	public function update() {
+	public function update()
+	{
 		if (parent::update() === false) return false;
 
 		return $this->updateRelative();
@@ -106,7 +110,8 @@ class RoleForm extends PermissionForm {
 	 * Update relative
 	 * @return boolean
 	 */
-	public function updateRelative() {
+	public function updateRelative()
+	{
 		$auth = Yii::$app->authManager;
 
 		//children

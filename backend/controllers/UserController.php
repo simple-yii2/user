@@ -53,9 +53,7 @@ class UserController extends Controller
 	 */
 	public function actionCreate()
 	{
-		$object = new User;
-
-		$model = new UserForm($object, ['scenario' => 'create']);
+		$model = new UserForm(new User, ['scenario' => 'create']);
 
 		if ($model->load(Yii::$app->getRequest()->post()) && $model->save()) {
 			Yii::$app->session->setFlash('success', Yii::t('user', 'Changes saved successfully.'));

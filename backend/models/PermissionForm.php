@@ -7,7 +7,8 @@ use Yii;
 /**
  * Permission form
  */
-class PermissionForm extends RbacForm {
+class PermissionForm extends RbacForm
+{
 
 	/**
 	 * @var boolean Is own permission
@@ -15,31 +16,30 @@ class PermissionForm extends RbacForm {
 	public $own = false;
 
 	/**
-	 * Attribute labels
-	 * @return array
+	 * @inheritdoc
 	 */
-	public function attributeLabels() {
+	public function attributeLabels()
+	{
 		return array_merge(parent::attributeLabels(), [
 			'own' => Yii::t('user', 'Allow to author'),
 		]);
 	}
 
 	/**
-	 * Validation rules
-	 * @return array
+	 * @inheritdoc
 	 */
-	public function rules() {
+	public function rules()
+	{
 		return array_merge(parent::rules(), [
 			['own', 'boolean'],
 		]);
 	}
 
 	/**
-	 * Initialization
-	 * Set default values
-	 * @return void
+	 * @inheritdoc
 	 */
-	public function init() {
+	public function init()
+	{
 		parent::init();
 		
 		if ($this->item !== null) {
@@ -53,7 +53,8 @@ class PermissionForm extends RbacForm {
 	 * Permission creation
 	 * @return boolean
 	 */
-	public function create() {
+	public function create()
+	{
 		if (!$this->validate()) return false;
 
 		$auth = Yii::$app->authManager;
@@ -70,7 +71,8 @@ class PermissionForm extends RbacForm {
 	 * Permission updating
 	 * @return boolean
 	 */
-	public function update() {
+	public function update()
+	{
 		if (parent::update() === false) return false;
 
 		return $this->updateRelative();
@@ -80,7 +82,8 @@ class PermissionForm extends RbacForm {
 	 * Update relative
 	 * @return boolean
 	 */
-	public function updateRelative() {
+	public function updateRelative()
+	{
 		$auth = Yii::$app->authManager;
 
 		//allow to author

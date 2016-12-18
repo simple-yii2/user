@@ -8,7 +8,8 @@ use yii\base\Model;
 /**
  * Password setting form
  */
-class PasswordForm extends Model {
+class PasswordForm extends Model
+{
 
 	/**
 	 * @var string 
