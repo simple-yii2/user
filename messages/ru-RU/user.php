@@ -68,4 +68,5 @@ return [
 	'The password is entered incorrectly.' => 'Пароль введен неверно.',
 	'Settings' => 'Настройки',
 	'Create user' => 'Добавить пользователя',
+	'Password set successfully.' => 'Пароль успешно установлен.',
 ];

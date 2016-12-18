@@ -46,8 +46,19 @@ $this->params['breadcrumbs'] = [
 		],
 		[
 			'class' => 'yii\grid\ActionColumn',
-			'options' => ['style' => 'width: 25px;'],
-			'template' => '{update}',
+			'options' => ['style' => 'width: 50px;'],
+			'template' => '{update} {password}',
+			'buttons' => [
+				'password' => function ($url, $model, $key) {
+					$title = Yii::t('user', 'Set password');
+
+					return Html::a('<span class="glyphicon glyphicon-lock"><span>', ['password', 'id' => $model->id], [
+						'title' => $title,
+						'aria-label' => $title,
+						'data-pjax' => 0,
+					]);
+				},
+			],
 		],
 	],
 ]) ?>
