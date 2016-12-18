@@ -69,4 +69,5 @@ return [
 	'Settings' => 'Настройки',
 	'Create user' => 'Добавить пользователя',
 	'Password set successfully.' => 'Пароль успешно установлен.',
+	'Set password' => 'Установить пароль',
 ];
