@@ -101,7 +101,7 @@ class UserController extends Controller
 			throw new BadRequestHttpException(Yii::t('user', 'User not found.'));
 
 		$model = new PasswordForm($object);
-		if ($model->load(Yii::$app->getRequest()->post()) && $model->save()) {
+		if ($model->load(Yii::$app->getRequest()->post()) && $model->changePassword()) {
 			Yii::$app->session->setFlash('success', Yii::t('user', 'Password set successfully.'));
 			return $this->redirect(['index']);
 		}

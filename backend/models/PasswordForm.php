@@ -69,10 +69,10 @@ class PasswordForm extends Model {
 	}
 
 	/**
-	 * Save
+	 * Change password
 	 * @return boolean
 	 */
-	public function save()
+	public function changePassword()
 	{
 		if (!$this->validate())
 			return false;
