@@ -91,7 +91,7 @@ class RegisterForm extends Model
 	public function rules()
 	{
 		return [
-			[['email', 'password', 'verifyCode'], 'required'],
+			[['email', 'password', 'confirm', 'verifyCode'], 'required'],
 			['email', 'email'],
 			['password', 'string', 'min' => 4],
 			['confirm', 'compare', 'compareAttribute' => 'password'],
