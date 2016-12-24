@@ -1,11 +1,11 @@
 <?php
 
-namespace cms\users\frontend\models;
+namespace cms\user\frontend\models;
 
 use Yii;
 use yii\base\Model;
 
-use cms\users\common\models\User;
+use cms\user\common\models\User;
 
 /**
  * Register form
@@ -49,15 +49,15 @@ class RegisterForm extends Model
 	public $mailing;
 
 	/**
-	 * @var cms\users\common\models\User
+	 * @var cms\user\common\models\User
 	 */
 	private $_object;
 
 	/**
 	 * @inheritdoc
-	 * @param cms\users\common\models\User $object 
+	 * @param cms\user\common\models\User $object 
 	 */
-	public function __construct(\cms\users\common\models\User $object, $config = [])
+	public function __construct(\cms\user\common\models\User $object, $config = [])
 	{
 		$this->_object = $object;
 
@@ -75,13 +75,13 @@ class RegisterForm extends Model
 	public function attributeLabels()
 	{
 		return [
-			'email' => Yii::t('users', 'E-mail'),
-			'password' => Yii::t('users', 'Password'),
-			'confirm' => Yii::t('users', 'Confirm'),
-			'firstName' => Yii::t('users', 'First name'),
-			'lastName' => Yii::t('users', 'Last name'),
-			'verifyCode' => Yii::t('users', 'Verify code'),
-			'mailing' => Yii::t('users', 'Notify about promotions, discounts, news'),
+			'email' => Yii::t('user', 'E-mail'),
+			'password' => Yii::t('user', 'Password'),
+			'confirm' => Yii::t('user', 'Confirm'),
+			'firstName' => Yii::t('user', 'First name'),
+			'lastName' => Yii::t('user', 'Last name'),
+			'verifyCode' => Yii::t('user', 'Verify code'),
+			'mailing' => Yii::t('user', 'Notify about promotions, discounts, news'),
 		];
 	}
 
@@ -100,7 +100,7 @@ class RegisterForm extends Model
 			['mailing', 'boolean'],
 			['email', function($attribute, $params) {
 				if (User::find()->where(['email' => $this->email])->count() > 0) {
-					$this->addError($attribute, Yii::t('users', 'The entered e-mail is already in use.'));
+					$this->addError($attribute, Yii::t('user', 'The entered e-mail is already in use.'));
 				}
 			}],
 		];

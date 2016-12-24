@@ -3,7 +3,7 @@
 use yii\bootstrap\ActiveForm;
 use yii\helpers\Html;
 
-$title = Yii::t('users', 'Change password');
+$title = Yii::t('user', 'Change password');
 
 $this->title = $title . ' | ' . Yii::$app->name;
 
@@ -21,7 +21,7 @@ $this->params['breadcrumbs'] = [
 
 	<div class="form-group">
 		<div class="col-sm-offset-3 col-sm-6">
-			<p><?= Yii::t('users', 'Set a new password for your account.') ?></p>
+			<p><?= Yii::t('user', 'Set a new password for your account.') ?></p>
 		</div>
 	</div>
 
@@ -33,7 +33,7 @@ $this->params['breadcrumbs'] = [
 
 	<div class="form-group">
 		<div class="col-sm-offset-3 col-sm-6">
-			<?= Html::submitButton(Yii::t('users', 'Save'), ['class' => 'btn btn-primary']) ?>
+			<?= Html::submitButton(Yii::t('user', 'Save'), ['class' => 'btn btn-primary']) ?>
 		</div>
 	</div>
 

@@ -1,13 +1,13 @@
 <?php
 
-namespace cms\users\frontend\controllers;
+namespace cms\user\frontend\controllers;
 
 use Yii;
 use yii\base\InvalidParamException;
 use yii\web\Controller;
 
-use cms\users\common\models\User;
-use cms\users\frontend\models\RegisterForm;
+use cms\user\common\models\User;
+use cms\user\frontend\models\RegisterForm;
 
 /**
  * Register controller
@@ -27,11 +27,11 @@ class RegisterController extends Controller
 		$model = new RegisterForm(new User);
 		if ($model->load(Yii::$app->request->post()) && $model->register()) {
 
-			$message = Yii::t('users', 'Registration completed successfully.');
+			$message = Yii::t('user', 'Registration completed successfully.');
 			if ($model->sendEmail()) {
-				Yii::$app->getSession()->setFlash('success', $message . ' ' . Yii::t('users', 'Confirm message was sent on the specified E-mail.'));
+				Yii::$app->getSession()->setFlash('success', $message . ' ' . Yii::t('user', 'Confirm message was sent on the specified E-mail.'));
 			} else {
-				Yii::$app->getSession()->setFlash('warning', $message . ' ' . Yii::t('users', 'Failed to send a confirm message on the specified e-mail.'));
+				Yii::$app->getSession()->setFlash('warning', $message . ' ' . Yii::t('user', 'Failed to send a confirm message on the specified e-mail.'));
 			}
 
 			return $this->goHome();
@@ -52,15 +52,15 @@ class RegisterController extends Controller
 		$user = User::findByConfirmToken($token);
 
 		if ($user === null)
-			throw new InvalidParamException(Yii::t('users', 'Link invalid. Perhaps, e-mail has already been confirmed or the waiting period has expired.'));
+			throw new InvalidParamException(Yii::t('user', 'Link invalid. Perhaps, e-mail has already been confirmed or the waiting period has expired.'));
 
 		$user->confirmed = true;
 		$user->removeConfirmToken();
 
 		if ($user->save()) {
-			Yii::$app->getSession()->setFlash('success', Yii::t('users', 'Your e-mail is successfully confirmed.'));
+			Yii::$app->getSession()->setFlash('success', Yii::t('user', 'Your e-mail is successfully confirmed.'));
 		} else {
-			Yii::$app->getSession()->setFlash('error', Yii::t('users', 'An error occurred while trying to confirm the e-mail.'));
+			Yii::$app->getSession()->setFlash('error', Yii::t('user', 'An error occurred while trying to confirm the e-mail.'));
 		}
 
 		return $this->redirect(['settings/index']);

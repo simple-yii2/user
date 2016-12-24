@@ -1,6 +1,6 @@
 <?php
 
-namespace cms\users\backend\controllers;
+namespace cms\user\backend\controllers;
 
 use Yii;
 use yii\data\ArrayDataProvider;
@@ -8,7 +8,7 @@ use yii\filters\AccessControl;
 use yii\web\BadRequestHttpException;
 use yii\web\Controller;
 
-use cms\users\backend\models\PermissionForm;
+use cms\user\backend\models\PermissionForm;
 
 /**
  * Premission manage controller
@@ -74,11 +74,11 @@ class PermissionController extends Controller
 	public function actionUpdate($name)
 	{
 		$item = Yii::$app->authManager->getPermission($name);
-		if ($item === null) throw new BadRequestHttpException(Yii::t('users', 'Premission was not found.'));
+		if ($item === null) throw new BadRequestHttpException(Yii::t('user', 'Premission was not found.'));
 
 		$model = new PermissionForm(['item' => $item]);
 		if ($model->load(Yii::$app->request->post()) && $model->update()) {
-			Yii::$app->session->setFlash('success', Yii::t('users', 'Changes saved successfully.'));
+			Yii::$app->session->setFlash('success', Yii::t('user', 'Changes saved successfully.'));
 			return $this->redirect(['index']);
 		}
 
@@ -97,9 +97,9 @@ class PermissionController extends Controller
 		$auth = Yii::$app->authManager;
 		
 		$item = $auth->getPermission($name);
-		if ($item === null) throw new BadRequestHttpException(Yii::t('users', 'Premission was not found.'));
+		if ($item === null) throw new BadRequestHttpException(Yii::t('user', 'Premission was not found.'));
 
-		if ($auth->remove($item)) Yii::$app->session->setFlash('success', Yii::t('users', 'Premission deleted successfully.'));
+		if ($auth->remove($item)) Yii::$app->session->setFlash('success', Yii::t('user', 'Premission deleted successfully.'));
 
 		return $this->redirect(['index']);
 	}

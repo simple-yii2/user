@@ -1,11 +1,11 @@
 <?php
 
-namespace cms\users\backend\models;
+namespace cms\user\backend\models;
 
 use Yii;
 use yii\data\ActiveDataProvider;
 
-use cms\users\common\models\User;
+use cms\user\common\models\User;
 
 /**
  * User search model
@@ -19,8 +19,7 @@ class UserSearch extends User
 	public function attributeLabels()
 	{
 		return [
-			'email' => Yii::t('users', 'E-mail'),
-			'admin' => Yii::t('users', 'Administrator'),
+			'email' => Yii::t('user', 'E-mail'),
 		];
 	}
 

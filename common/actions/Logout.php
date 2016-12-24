@@ -1,6 +1,6 @@
 <?php
 
-namespace cms\users\common\actions;
+namespace cms\user\common\actions;
 
 use Yii;
 use yii\base\Action;

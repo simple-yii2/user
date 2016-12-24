@@ -1,6 +1,6 @@
 <?php
 
-namespace cms\users\frontend;
+namespace cms\user\frontend;
 
 use Yii;
 
@@ -23,8 +23,8 @@ class Module extends \yii\base\Module
 	 */
 	protected static function addTranslation()
 	{
-		if (!isset(Yii::$app->i18n->translations['users'])) {
-			Yii::$app->i18n->translations['users'] = [
+		if (!isset(Yii::$app->i18n->translations['user'])) {
+			Yii::$app->i18n->translations['user'] = [
 				'class' => 'yii\i18n\PhpMessageSource',
 				'sourceLanguage' => 'en-US',
 				'basePath' => dirname(__DIR__) . '/messages',

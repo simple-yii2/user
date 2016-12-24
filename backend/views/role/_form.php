@@ -14,16 +14,16 @@ use yii\helpers\Html;
 	<?= Tabs::widget([
 		'items' => [
 			[
-				'label' => Yii::t('users', 'General'),
+				'label' => Yii::t('user', 'General'),
 				'content' => $this->render('form/general', ['form' => $form, 'model' => $model]),
 				'active' => true,
 			],
 			[
-				'label' => Yii::t('users', 'Security'),
+				'label' => Yii::t('user', 'Security'),
 				'content' => $this->render('form/child', ['form' => $form, 'model' => $model]),
 			],
 			[
-				'label' => Yii::t('users', 'Users'),
+				'label' => Yii::t('user', 'Users'),
 				'content' => $this->render('form/assignment', ['model' => $model]),
 			],
 		],
@@ -31,8 +31,8 @@ use yii\helpers\Html;
 
 	<div class="form-group">
 		<div class="col-sm-offset-3 col-sm-6">
-			<?= Html::submitButton(Yii::t('users', 'Save'), ['class' => 'btn btn-primary']) ?>
-			<?= Html::a(Yii::t('users', 'Cancel'), ['index'], ['class' => 'btn btn-link']) ?>
+			<?= Html::submitButton(Yii::t('user', 'Save'), ['class' => 'btn btn-primary']) ?>
+			<?= Html::a(Yii::t('user', 'Cancel'), ['index'], ['class' => 'btn btn-link']) ?>
 		</div>
 	</div>
 

@@ -4,7 +4,7 @@ use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 use yii\captcha\Captcha;
 
-$title = Yii::t('users', 'Registration');
+$title = Yii::t('user', 'Registration');
 
 $this->title = $title . ' | ' . Yii::$app->name;
 
@@ -34,14 +34,14 @@ $this->params['breadcrumbs'] = [
 		<?= $form->field($model, 'mailing')->checkbox() ?>
 		<div class="form-group">
 			<div class="col-sm-offset-3 col-sm-6">
-				<p><?= Yii::t('users', 'By clicking "Register", you agree to the terms of use.') ?></p>
+				<p><?= Yii::t('user', 'By clicking "Register", you agree to the terms of use.') ?></p>
 			</div>
 		</div>
 	</fieldset>
 	
 	<div class="form-group">
 		<div class="col-sm-offset-3 col-sm-6">
-			<?= Html::submitButton(Yii::t('users', 'Register'), ['class' => 'btn btn-primary']) ?>
+			<?= Html::submitButton(Yii::t('user', 'Register'), ['class' => 'btn btn-primary']) ?>
 		</div>
 	</div>
 

@@ -3,7 +3,7 @@
 use yii\bootstrap\ActiveForm;
 use yii\helpers\Html;
 
-$title = Yii::t('users', 'Settings');
+$title = Yii::t('user', 'Settings');
 
 $this->title = $title . ' | ' . Yii::$app->name;
 
@@ -12,7 +12,7 @@ $this->params['breadcrumbs'] = [
 ];
 
 if ($model->confirmed) $template = '{input}';
-else $template = '<div class="input-group">{input}<span class="input-group-btn">'.Html::a(Yii::t('users', 'Confirm e-mail'), ['confirm'], ['class' => 'btn btn-default']).'</span></div>';
+else $template = '<div class="input-group">{input}<span class="input-group-btn">'.Html::a(Yii::t('user', 'Confirm e-mail'), ['confirm'], ['class' => 'btn btn-default']).'</span></div>';
 
 ?>
 <h1><?= Html::encode($title) ?></h1>
@@ -31,13 +31,13 @@ else $template = '<div class="input-group">{input}<span class="input-group-btn">
 
 	<div class="form-group">
 		<div class="col-sm-offset-3 col-sm-6">
-			<?= Html::a(Yii::t('users', 'Change password'), ['password/index'], ['class' => 'btn btn-default']) ?>
+			<?= Html::a(Yii::t('user', 'Change password'), ['password/index'], ['class' => 'btn btn-default']) ?>
 		</div>
 	</div>
 
 	<div class="form-group">
 		<div class="col-sm-offset-3 col-sm-6">
-			<?= Html::submitButton(Yii::t('users', 'Save'), ['class' => 'btn btn-primary']) ?>
+			<?= Html::submitButton(Yii::t('user', 'Save'), ['class' => 'btn btn-primary']) ?>
 		</div>
 	</div>
 

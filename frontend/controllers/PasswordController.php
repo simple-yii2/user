@@ -1,11 +1,11 @@
 <?php
 
-namespace cms\users\frontend\controllers;
+namespace cms\user\frontend\controllers;
 
 use Yii;
 use yii\web\Controller;
 
-use cms\users\frontend\models\PasswordChangeForm;
+use cms\user\frontend\models\PasswordChangeForm;
 
 /**
  * Password change controller
@@ -30,7 +30,7 @@ class PasswordController extends Controller
 
 		//read user data
 		if ($model->load(Yii::$app->request->post()) && $model->changePassword()) {
-			Yii::$app->getSession()->setFlash('success', Yii::t('users', 'The new password has been set.'));
+			Yii::$app->getSession()->setFlash('success', Yii::t('user', 'The new password has been set.'));
 
 			return $this->redirect(['settings/index']);
 		}

@@ -1,11 +1,11 @@
 <?php
 
-namespace cms\users\common\models;
+namespace cms\user\common\models;
 
 use Yii;
 use yii\base\Model;
 
-use cms\users\common\models\User;
+use cms\user\common\models\User;
 
 /**
  * User login form model
@@ -29,7 +29,7 @@ class LoginForm extends Model
 	public $rememberMe;
 
 	/**
-	 * @var cms\users\common\models\User
+	 * @var \cms\user\common\models\User
 	 */
 	private $_user = false;
 
@@ -39,9 +39,9 @@ class LoginForm extends Model
 	public function attributeLabels()
 	{
 		return [
-			'email' => Yii::t('users', 'E-mail'),
-			'password' => Yii::t('users', 'Password'),
-			'rememberMe' => Yii::t('users', 'Remember me'),
+			'email' => Yii::t('user', 'E-mail'),
+			'password' => Yii::t('user', 'Password'),
+			'rememberMe' => Yii::t('user', 'Remember me'),
 		];
 	}
 
@@ -70,7 +70,7 @@ class LoginForm extends Model
 			$user = $this->getUser();
 
 			if ($user && !$user->active) {
-				$this->addError($attribute, Yii::t('users', 'User is blocked.'));
+				$this->addError($attribute, Yii::t('user', 'User is blocked.'));
 			}
 		}
 	}
@@ -87,7 +87,7 @@ class LoginForm extends Model
 			$user = $this->getUser();
 
 			if (!$user || !$user->validatePassword($this->password)) {
-				$this->addError($attribute, Yii::t('users', 'Incorrect username or password.'));
+				$this->addError($attribute, Yii::t('user', 'Incorrect username or password.'));
 			}
 		}
 	}
@@ -106,7 +106,7 @@ class LoginForm extends Model
 
 	/**
 	 * User getter
-	 * @return cms\users\common\models\User
+	 * @return \cms\user\common\models\User
 	 */
 	public function getUser()
 	{
