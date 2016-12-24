@@ -36,7 +36,7 @@ class UserSearch extends User
 	/**
 	 * Search function
 	 * @param array $params Attributes array
-	 * @return \yii\data\ActiveDataProvider
+	 * @return yii\data\ActiveDataProvider
 	 */
 	public function search($params) {
 		//ActiveQuery

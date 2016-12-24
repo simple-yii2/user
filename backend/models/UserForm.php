@@ -49,13 +49,13 @@ class UserForm extends Model
 	public $roles;
 
 	/**
-	 * @var \cms\user\common\models\User
+	 * @var cms\user\common\models\User
 	 */
 	private $_object;
 
 	/**
 	 * @inheritdoc
-	 * @param \cms\user\common\models\User $object 
+	 * @param cms\user\common\models\User $object 
 	 */
 	public function __construct(\cms\user\common\models\User $object, $config = [])
 	{

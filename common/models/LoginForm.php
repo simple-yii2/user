@@ -29,7 +29,7 @@ class LoginForm extends Model
 	public $rememberMe;
 
 	/**
-	 * @var \cms\user\common\models\User
+	 * @var cms\user\common\models\User
 	 */
 	private $_user = false;
 
@@ -106,7 +106,7 @@ class LoginForm extends Model
 
 	/**
 	 * User getter
-	 * @return \cms\user\common\models\User
+	 * @return cms\user\common\models\User
 	 */
 	public function getUser()
 	{
