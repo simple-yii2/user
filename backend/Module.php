@@ -1,11 +1,11 @@
 <?php
 
-namespace cms\user\backend;
+namespace cms\users\backend;
 
 use Yii;
 
-use cms\user\common\components\AuthorRule;
-use cms\user\common\models\User;
+use cms\users\common\components\AuthorRule;
+use cms\users\common\models\User;
 
 /**
  * User backend module
@@ -73,8 +73,8 @@ class Module extends \yii\base\Module {
 	 */
 	protected static function addTranslation()
 	{
-		if (!isset(Yii::$app->i18n->translations['user'])) {
-			Yii::$app->i18n->translations['user'] = [
+		if (!isset(Yii::$app->i18n->translations['users'])) {
+			Yii::$app->i18n->translations['users'] = [
 				'class' => 'yii\i18n\PhpMessageSource',
 				'sourceLanguage' => 'en-US',
 				'basePath' => dirname(__DIR__) . '/messages',
@@ -103,11 +103,11 @@ class Module extends \yii\base\Module {
 
 		if (Yii::$app->user->can('admin')) {
 			return [
-				['label' => Yii::t('user', 'Security'), 'items' => [
-					['label' => Yii::t('user', 'Permissions'), 'url' => ["$base/user/permission/index"]],
-					['label' => Yii::t('user', 'Roles'), 'url' => ["$base/user/role/index"]],
+				['label' => Yii::t('users', 'Security'), 'items' => [
+					['label' => Yii::t('users', 'Permissions'), 'url' => ["$base/users/permission/index"]],
+					['label' => Yii::t('users', 'Roles'), 'url' => ["$base/users/role/index"]],
 					'<li role="separator" class="divider"></li>',
-					['label' => Yii::t('user', 'Users'), 'url' => ["$base/user/user/index"]],
+					['label' => Yii::t('users', 'Users'), 'url' => ["$base/users/user/index"]],
 				]],
 			];
 		}

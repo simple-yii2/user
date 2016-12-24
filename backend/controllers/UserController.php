@@ -1,16 +1,16 @@
 <?php
 
-namespace cms\user\backend\controllers;
+namespace cms\users\backend\controllers;
 
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\BadRequestHttpException;
 use yii\web\Controller;
 
-use cms\user\backend\models\PasswordForm;
-use cms\user\backend\models\UserForm;
-use cms\user\backend\models\UserSearch;
-use cms\user\common\models\User;
+use cms\users\backend\models\PasswordForm;
+use cms\users\backend\models\UserForm;
+use cms\users\backend\models\UserSearch;
+use cms\users\common\models\User;
 
 /**
  * User manage controller
@@ -56,7 +56,7 @@ class UserController extends Controller
 		$model = new UserForm(new User, ['scenario' => 'create']);
 
 		if ($model->load(Yii::$app->getRequest()->post()) && $model->save()) {
-			Yii::$app->session->setFlash('success', Yii::t('user', 'Changes saved successfully.'));
+			Yii::$app->session->setFlash('success', Yii::t('users', 'Changes saved successfully.'));
 			return $this->redirect(['index']);
 		}
 
@@ -74,11 +74,11 @@ class UserController extends Controller
 	{
 		$object = User::findOne($id);
 		if ($object === null)
-			throw new BadRequestHttpException(Yii::t('user', 'User not found.'));
+			throw new BadRequestHttpException(Yii::t('users', 'User not found.'));
 
 		$model = new UserForm($object);
 		if ($model->load(Yii::$app->getRequest()->post()) && $model->save()) {
-			Yii::$app->session->setFlash('success', Yii::t('user', 'Changes saved successfully.'));
+			Yii::$app->session->setFlash('success', Yii::t('users', 'Changes saved successfully.'));
 			return $this->redirect(['index']);
 		}
 
@@ -96,11 +96,11 @@ class UserController extends Controller
 	{
 		$object = User::findOne($id);
 		if ($object === null)
-			throw new BadRequestHttpException(Yii::t('user', 'User not found.'));
+			throw new BadRequestHttpException(Yii::t('users', 'User not found.'));
 
 		$model = new PasswordForm($object);
 		if ($model->load(Yii::$app->getRequest()->post()) && $model->changePassword()) {
-			Yii::$app->session->setFlash('success', Yii::t('user', 'Password set successfully.'));
+			Yii::$app->session->setFlash('success', Yii::t('users', 'Password set successfully.'));
 			return $this->redirect(['index']);
 		}
 

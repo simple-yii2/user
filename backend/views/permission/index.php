@@ -4,7 +4,7 @@ use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\grid\GridView;
 
-$title = Yii::t('user', 'Permissions');
+$title = Yii::t('users', 'Permissions');
 
 $this->title = $title . ' | ' . Yii::$app->name;
 
@@ -16,7 +16,7 @@ $this->params['breadcrumbs'] = [
 <h1><?= Html::encode($title) ?></h1>
 
 <div class="btn-toolbar" role="toolbar">
-	<?= Html::a(Yii::t('user', 'Create'), ['create'], ['class' => 'btn btn-primary']) ?>
+	<?= Html::a(Yii::t('users', 'Create'), ['create'], ['class' => 'btn btn-primary']) ?>
 </div>
 
 <?= GridView::widget([
@@ -26,7 +26,7 @@ $this->params['breadcrumbs'] = [
 	'tableOptions' => ['class' => 'table table-condensed'],
 	'columns' => [
 		[
-			'header' => Yii::t('user', 'Name'),
+			'header' => Yii::t('users', 'Name'),
 			'format' => 'html',
 			'value' => function($model, $key, $index, $column) {
 				$r = Html::encode($model->name);

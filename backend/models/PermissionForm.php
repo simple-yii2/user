@@ -1,6 +1,6 @@
 <?php
 
-namespace cms\user\backend\models;
+namespace cms\users\backend\models;
 
 use Yii;
 
@@ -21,7 +21,7 @@ class PermissionForm extends RbacForm
 	public function attributeLabels()
 	{
 		return array_merge(parent::attributeLabels(), [
-			'own' => Yii::t('user', 'Allow to author'),
+			'own' => Yii::t('users', 'Allow to author'),
 		]);
 	}
 

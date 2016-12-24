@@ -7,7 +7,7 @@ $title = $model->getUsername();
 $this->title = $title . ' | ' . Yii::$app->name;
 
 $this->params['breadcrumbs'] = [
-	['label' => Yii::t('user', 'Users'), 'url' => ['index']],
+	['label' => Yii::t('users', 'Users'), 'url' => ['index']],
 	$title,
 ];
 

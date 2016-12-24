@@ -4,7 +4,7 @@ use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 use yii\captcha\Captcha;
 
-$title = Yii::t('user', 'Password reset');
+$title = Yii::t('users', 'Password reset');
 
 $this->title = $title . ' | ' . Yii::$app->name;
 
@@ -22,7 +22,7 @@ $this->params['breadcrumbs'] = [
 
 	<div class="form-group">
 		<div class="col-sm-offset-3 col-sm-6">
-			<p><?= Yii::t('user', 'Enter your e-mail. On it will be sent a link to reset your password.') ?></p>
+			<p><?= Yii::t('users', 'Enter your e-mail. On it will be sent a link to reset your password.') ?></p>
 		</div>
 	</div>
 
@@ -37,13 +37,13 @@ $this->params['breadcrumbs'] = [
 
 	<div class="form-group">
 		<div class="col-sm-offset-3 col-sm-6">
-			<?= Html::submitButton(Yii::t('user', 'Send'), ['class' => 'btn btn-primary', 'name' => 'reset-button']) ?>
+			<?= Html::submitButton(Yii::t('users', 'Send'), ['class' => 'btn btn-primary', 'name' => 'reset-button']) ?>
 		</div>
 	</div>
 
 	<div class="form-group">
 		<div class="col-sm-offset-3 col-sm-6">
-			<?= Yii::t('user', 'You know your password?') ?> <?= Html::a(Yii::t('user', 'Login'), ['/user/login/index']) ?>
+			<?= Yii::t('users', 'You know your password?') ?> <?= Html::a(Yii::t('users', 'Login'), ['/users/login/index']) ?>
 		</div>
 	</div>
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace cms\user\backend\controllers;
+namespace cms\users\backend\controllers;
 
 use yii\web\Controller;
 
@@ -13,7 +13,7 @@ class LoginController extends Controller
 	public function actions()
 	{
 		return [
-			'index' => 'cms\user\common\actions\Login',
+			'index' => 'cms\users\common\actions\Login',
 		];
 	}
 

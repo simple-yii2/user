@@ -1,6 +1,6 @@
 <?php
 
-namespace cms\user\common\components;
+namespace cms\users\common\components;
 
 class User extends \yii\web\User {
 
@@ -19,7 +19,7 @@ class User extends \yii\web\User {
 
 	public function getUsername() {
 		if ($this->_username !== null) return $this->_username;
-		return $this->_username = $this->getIsGuest() ? Yii::t('user', 'Guest') : $this->getIdentity()->getUsername();
+		return $this->_username = $this->getIsGuest() ? Yii::t('users', 'Guest') : $this->getIdentity()->getUsername();
 	}
 
 }

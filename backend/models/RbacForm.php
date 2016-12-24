@@ -1,6 +1,6 @@
 <?php
 
-namespace cms\user\backend\models;
+namespace cms\users\backend\models;
 
 use Yii;
 use yii\base\Model;
@@ -32,8 +32,8 @@ abstract class RbacForm extends Model
 	public function attributeLabels()
 	{
 		return [
-			'name' => Yii::t('user', 'Name'),
-			'description' => Yii::t('user', 'Description'),
+			'name' => Yii::t('users', 'Name'),
+			'description' => Yii::t('users', 'Description'),
 		];
 	}
 
@@ -49,7 +49,7 @@ abstract class RbacForm extends Model
 				$auth = Yii::$app->authManager;
 				$name = $this->item === null ? null : $this->item->name;
 				if ($name != $this->name && ($auth->getPermission($this->name) !== null || $auth->getRole($this->name) !== null)) {
-					$this->addError('name', Yii::t('user', 'The name is already used.'));
+					$this->addError('name', Yii::t('users', 'The name is already used.'));
 				}
 			}],
 		];

@@ -1,13 +1,13 @@
 <?php
 
-namespace cms\user\frontend\controllers;
+namespace cms\users\frontend\controllers;
 
 use Yii;
 use yii\web\Controller;
 
-use cms\user\common\models\User;
-use cms\user\frontend\models\PasswordResetRequestForm;
-use cms\user\frontend\models\PasswordResetForm;
+use cms\users\common\models\User;
+use cms\users\frontend\models\PasswordResetRequestForm;
+use cms\users\frontend\models\PasswordResetForm;
 
 /**
  * Reset password controller
@@ -26,10 +26,10 @@ class ResetController extends Controller
 		if ($model->load(Yii::$app->request->post()) && $model->validate()) {
 
 			if ($model->sendEmail()) {
-				Yii::$app->getSession()->setFlash('success', Yii::t('user', 'On the specified e-mail was sent an instructions to reset your password.'));
+				Yii::$app->getSession()->setFlash('success', Yii::t('users', 'On the specified e-mail was sent an instructions to reset your password.'));
 				return $this->refresh();
 			} else {
-				Yii::$app->getSession()->setFlash('error', Yii::t('user', 'Failed to send an email to reset your password.'));
+				Yii::$app->getSession()->setFlash('error', Yii::t('users', 'Failed to send an email to reset your password.'));
 			}
 
 		}
@@ -53,7 +53,7 @@ class ResetController extends Controller
 		$model = new PasswordResetForm($object);
 
 		if ($model->load(Yii::$app->request->post()) && $model->resetPassword()) {
-			Yii::$app->getSession()->setFlash('success', Yii::t('user', 'The new password has been set.'));
+			Yii::$app->getSession()->setFlash('success', Yii::t('users', 'The new password has been set.'));
 
 			return $this->redirect(['login/index']);
 		}

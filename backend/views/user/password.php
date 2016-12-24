@@ -8,7 +8,7 @@ $title = $model->getUsername();
 $this->title = $title . ' | ' . Yii::$app->name;
 
 $this->params['breadcrumbs'] = [
-	['label' => Yii::t('user', 'Users'), 'url' => ['index']],
+	['label' => Yii::t('users', 'Users'), 'url' => ['index']],
 	$title,
 ];
 
@@ -25,8 +25,8 @@ $this->params['breadcrumbs'] = [
 
 	<div class="form-group">
 		<div class="col-sm-offset-3 col-sm-6">
-			<?= Html::submitButton(Yii::t('user', 'Save'), ['class' => 'btn btn-primary']) ?>
-			<?= Html::a(Yii::t('user', 'Cancel'), ['index'], ['class' => 'btn btn-link']) ?>
+			<?= Html::submitButton(Yii::t('users', 'Save'), ['class' => 'btn btn-primary']) ?>
+			<?= Html::a(Yii::t('users', 'Cancel'), ['index'], ['class' => 'btn btn-link']) ?>
 		</div>
 	</div>
 

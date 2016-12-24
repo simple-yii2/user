@@ -3,7 +3,7 @@
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 
-$title = Yii::t('user', 'Login');
+$title = Yii::t('users', 'Login');
 
 $this->title = $title . ' | ' . Yii::$app->name;
 
@@ -23,7 +23,7 @@ $this->title = $title . ' | ' . Yii::$app->name;
 
 	<div class="form-group">
 		<div class="col-sm-offset-3 col-sm-6">
-			<?= Html::submitButton(Yii::t('user', 'Login'), ['class' => 'btn btn-primary']) ?>
+			<?= Html::submitButton(Yii::t('users', 'Login'), ['class' => 'btn btn-primary']) ?>
 		</div>
 	</div>
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace cms\user\frontend\models;
+namespace cms\users\frontend\models;
 
 use Yii;
 use yii\base\Model;
@@ -27,15 +27,15 @@ class PasswordChangeForm extends Model
 	public $confirm;
 
 	/**
-	 * @var cms\user\common\models\User
+	 * @var cms\users\common\models\User
 	 */
 	private $_object;
 
 	/**
 	 * @inheritdoc
-	 * @param cms\user\common\models\User $object 
+	 * @param cms\users\common\models\User $object 
 	 */
-	public function __construct(\cms\user\common\models\User $object, $config = [])
+	public function __construct(\cms\users\common\models\User $object, $config = [])
 	{
 		$this->_object = $object;
 
@@ -48,9 +48,9 @@ class PasswordChangeForm extends Model
 	public function attributeLabels()
 	{
 		return [
-			'oldPassword' => Yii::t('user', 'Current password'),
-			'password' => Yii::t('user', 'New password'),
-			'confirm' => Yii::t('user', 'Confirm'),
+			'oldPassword' => Yii::t('users', 'Current password'),
+			'password' => Yii::t('users', 'New password'),
+			'confirm' => Yii::t('users', 'Confirm'),
 		];
 	}
 
@@ -64,7 +64,7 @@ class PasswordChangeForm extends Model
 			['oldPassword', function($attribute) {
 				if (!$this->hasErrors()) {
 					if (!$this->_object->validatePassword($this->$attribute)) {
-						$this->addError($attribute, Yii::t('user', 'The password is entered incorrectly.'));
+						$this->addError($attribute, Yii::t('users', 'The password is entered incorrectly.'));
 					}
 				}
 			}],

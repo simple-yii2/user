@@ -1,6 +1,6 @@
 <?php
 
-namespace cms\user\backend\models;
+namespace cms\users\backend\models;
 
 use Yii;
 use yii\base\Model;
@@ -22,15 +22,15 @@ class PasswordForm extends Model
 	public $confirm;
 
 	/**
-	 * @var \cms\user\common\models\User 
+	 * @var cms\users\common\models\User 
 	 */
 	private $_object;
 
 	/**
 	 * @inheritdoc
-	 * @param \cms\user\common\models\User $object 
+	 * @param cms\users\common\models\User $object 
 	 */
-	public function __construct(\cms\user\common\models\User $object, $config = [])
+	public function __construct(\cms\users\common\models\User $object, $config = [])
 	{
 		$this->_object = $object;
 
@@ -43,8 +43,8 @@ class PasswordForm extends Model
 	public function attributeLabels()
 	{
 		return [
-			'password' => Yii::t('user', 'Password'),
-			'confirm' => Yii::t('user', 'Confirm'),
+			'password' => Yii::t('users', 'Password'),
+			'confirm' => Yii::t('users', 'Confirm'),
 		];
 	}
 

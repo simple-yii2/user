@@ -1,6 +1,6 @@
 <?php
 
-namespace cms\user\common\components;
+namespace cms\users\common\components;
 
 use yii\rbac\Rule;
 

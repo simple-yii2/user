@@ -1,12 +1,12 @@
 <?php
 
-namespace cms\user\frontend\models;
+namespace cms\users\frontend\models;
 
 use Yii;
 use yii\base\InvalidParamException;
 use yii\base\Model;
 
-use cms\user\common\models\User;
+use cms\users\common\models\User;
 
 /**
  * Password reset form
@@ -25,13 +25,13 @@ class PasswordResetForm extends Model
 	public $confirm;
 
 	/**
-	 * @var cms\user\common\models\User
+	 * @var cms\users\common\models\User
 	 */
 	private $_object;
 
 	/**
 	 * @inheritdoc
-	 * @param cms\user\common\models\User $object 
+	 * @param cms\users\common\models\User $object 
 	 */
 	public function __construct($object, $config = [])
 	{
@@ -46,8 +46,8 @@ class PasswordResetForm extends Model
 	public function attributeLabels()
 	{
 		return [
-			'password' => Yii::t('user', 'Password'),
-			'confirm' => Yii::t('user', 'Confirm'),
+			'password' => Yii::t('users', 'Password'),
+			'confirm' => Yii::t('users', 'Confirm'),
 		];
 	}
 

@@ -7,8 +7,8 @@ use yii\helpers\Url;
 use yii\jui\AutoComplete;
 use yii\web\JsExpression;
 
-use cms\user\backend\assets\UserAsset;
-use cms\user\common\models\User;
+use cms\users\backend\assets\UserAsset;
+use cms\users\common\models\User;
 
 //js
 UserAsset::register($this);
@@ -41,7 +41,7 @@ $name = Html::getInputName($model, 'users').'[]';
 					],
 				]) ?>
 				<span class="input-group-btn">
-					<?= Html::a(Yii::t('user', 'Add'), ['assign'], ['class' => 'btn btn-default assign', 'disabled' => true]) ?>
+					<?= Html::a(Yii::t('users', 'Add'), ['assign'], ['class' => 'btn btn-default assign', 'disabled' => true]) ?>
 				</span>
 			</div>
 		</div>
@@ -62,7 +62,7 @@ $name = Html::getInputName($model, 'users').'[]';
 				},
 				'columns' => [
 					[
-						'header' => Yii::t('user', 'Name'),
+						'header' => Yii::t('users', 'Name'),
 						'format' => 'raw',
 						'value' => function($model, $key, $index, $column) use ($name) {
 							$r = Html::hiddenInput($name, $model->id);
@@ -82,7 +82,7 @@ $name = Html::getInputName($model, 'users').'[]';
 							'remove' => function($url, $model, $key) {
 								return Html::a('<span class="glyphicon glyphicon-remove"></span>', '#', [
 									'class' => 'revoke',
-									'title' => Yii::t('user', 'Delete'),
+									'title' => Yii::t('users', 'Delete'),
 									'data-pjax' => '0',
 								]);
 							},

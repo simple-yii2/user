@@ -1,6 +1,6 @@
 <?php
 
-namespace cms\user\frontend\controllers;
+namespace cms\users\frontend\controllers;
 
 use yii\web\Controller;
 
@@ -10,9 +10,10 @@ use yii\web\Controller;
 class LogoutController extends Controller
 {
 
-	public function actions() {
+	public function actions()
+	{
 		return [
-			'index' => 'cms\user\common\actions\Logout',
+			'index' => 'cms\users\common\actions\Logout',
 		];
 	}
 

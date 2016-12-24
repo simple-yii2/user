@@ -1,6 +1,6 @@
 <?php
 
-namespace cms\user\backend\models;
+namespace cms\users\backend\models;
 
 use Yii;
 
@@ -31,8 +31,8 @@ class RoleForm extends PermissionForm
 	public function attributeLabels()
 	{
 		return array_merge(parent::attributeLabels(), [
-			'roles' => Yii::t('user', 'Roles'),
-			'permissions' => Yii::t('user', 'Permissions'),
+			'roles' => Yii::t('users', 'Roles'),
+			'permissions' => Yii::t('users', 'Permissions'),
 		]);
 	}
 

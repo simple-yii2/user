@@ -1,11 +1,11 @@
 <?php
 
-namespace cms\user\common\actions;
+namespace cms\users\common\actions;
 
 use Yii;
 use yii\base\Action;
 
-use cms\user\common\models\LoginForm;
+use cms\users\common\models\LoginForm;
 
 /**
  * User login action

@@ -1,11 +1,11 @@
 <?php
 
-namespace cms\user\frontend\controllers;
+namespace cms\users\frontend\controllers;
 
 use Yii;
 use yii\web\Controller;
 
-use cms\user\frontend\models\SettingsForm;
+use cms\users\frontend\models\SettingsForm;
 
 /**
  * User settings controller
@@ -27,7 +27,7 @@ class SettingsController extends Controller
 		$model = new SettingsForm($user->getIdentity());
 
 		if ($model->load(Yii::$app->request->post()) && $model->save()) {
-			Yii::$app->getSession()->setFlash('success', Yii::t('user', 'Changes saved successfully.'));
+			Yii::$app->getSession()->setFlash('success', Yii::t('users', 'Changes saved successfully.'));
 		}
 
 		return $this->render('index', [
@@ -49,9 +49,9 @@ class SettingsController extends Controller
 		$object = $user->getIdentity();
 
 		if ($object->sendConfirmEmail()) {
-			Yii::$app->getSession()->setFlash('success', Yii::t('user', 'Confirm message was sent on the specified E-mail.'));
+			Yii::$app->getSession()->setFlash('success', Yii::t('users', 'Confirm message was sent on the specified E-mail.'));
 		} else {
-			Yii::$app->getSession()->setFlash('danger', Yii::t('user', 'Failed to send a confirm message on the specified e-mail.'));
+			Yii::$app->getSession()->setFlash('danger', Yii::t('users', 'Failed to send a confirm message on the specified e-mail.'));
 		}
 
 		return $this->redirect(['index']);
