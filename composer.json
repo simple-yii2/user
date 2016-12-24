@@ -1,8 +1,8 @@
 {
-    "name": "simple-yii2/users",
-    "description": "Users module for Yii 2 framework",
+    "name": "simple-yii2/user",
+    "description": "User module for Yii 2 framework",
     "type": "yii2-module",
-    "keywords": ["yii2","module","users"],
+    "keywords": ["yii2","module","user"],
     "license": "BSD-3-Clause",
     "authors": [
         {
@@ -16,7 +16,7 @@
     },
     "autoload": {
         "psr-4": {
-            "cms\\users\\": ""
+            "cms\\user\\": ""
         }
     }
 }
