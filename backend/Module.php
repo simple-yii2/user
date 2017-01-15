@@ -63,6 +63,7 @@ class Module extends \yii\base\Module {
 				'active' => true,
 				'email' => 'admin',
 				'mailing' => false,
+				'passwordChange' => true,
 			]);
 			$model->setPassword('admin');
 			$model->save();

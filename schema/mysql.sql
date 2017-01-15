@@ -45,6 +45,7 @@ create table if not exists `User`
 	`admin` tinyint(1) default 0,
 	`email` varchar(100) not null,
 	`passwordHash` varchar(60),
+	`passwordChange` tinyint(1) default 0,
 	`active` tinyint(1) default 1,
 	`createDate` datetime,
 	`loginDate` datetime,

@@ -70,4 +70,5 @@ return [
 	'Create user' => 'Добавить пользователя',
 	'Password set successfully.' => 'Пароль успешно установлен.',
 	'Set password' => 'Установить пароль',
+	'Password change required' => 'Необходима смена пароля',
 ];
