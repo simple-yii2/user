@@ -3,6 +3,7 @@
 namespace cms\user\backend;
 
 use Yii;
+use yii\helpers\Html;
 
 use cms\user\common\components\AuthorRule;
 use cms\user\common\models\User;
@@ -89,16 +90,6 @@ class Module extends \yii\base\Module {
 	 */
 	public static function getMenu($base)
 	{
-		return [];
-	}
-
-	/**
-	 * Making user module menu.
-	 * @param string $base route base
-	 * @return array
-	 */
-	public static function getUserMenu($base)
-	{
 		self::addTranslation();
 
 		if (Yii::$app->user->can('admin')) {
@@ -113,6 +104,34 @@ class Module extends \yii\base\Module {
 		}
 		
 		return [];
+	}
+
+	/**
+	 * Making user module menu.
+	 * @param string $base route base
+	 * @return array
+	 */
+	public static function getUserMenu($base)
+	{
+		self::addTranslation();
+
+		if (Yii::$app->user->isGuest)
+			return [];
+
+		$name = Html::encode(Yii::$app->getUser()->getIdentity()->getUsername());
+
+		return [
+			[
+				'label' => '<span class="glyphicon glyphicon-user"></span>&nbsp;' . $name,
+				'encode' => false,
+				'items' => [
+					['label' => Yii::t('user', 'Settings'), 'url' => ["$base/user/settings/index"]],
+					['label' => Yii::t('user', 'Change password'), 'url' => ["$base/user/password/index"]],
+					'<li role="separator" class="divider"></li>',
+					['label' => Yii::t('user', 'Logout'), 'url' => ["$base/user/logout/index"]],
+				],
+			],
+		];
 	}
 
 }
