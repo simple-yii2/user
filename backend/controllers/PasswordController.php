@@ -1,20 +1,17 @@
 <?php
 
-namespace cms\user\frontend\controllers;
+namespace cms\user\backend\controllers;
 
-use Yii;
 use yii\web\Controller;
 
-/**
- * Password change controller
- */
 class PasswordController extends Controller
 {
 
 	/**
 	 * @inheritdoc
 	 */
-	public function actions() {
+	public function actions()
+	{
 		return [
 			'index' => 'cms\user\common\actions\Password',
 		];

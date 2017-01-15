@@ -5,34 +5,16 @@ namespace cms\user\frontend\controllers;
 use Yii;
 use yii\web\Controller;
 
-use cms\user\frontend\models\SettingsForm;
-
-/**
- * User settings controller
- */
 class SettingsController extends Controller
 {
 
 	/**
-	 * Settings editting
-	 * @return void
+	 * @inheritdoc
 	 */
-	public function actionIndex()
-	{
-		$user = Yii::$app->getUser();
-
-		if ($user->isGuest)
-			return $this->goHome();
-
-		$model = new SettingsForm($user->getIdentity());
-
-		if ($model->load(Yii::$app->request->post()) && $model->save()) {
-			Yii::$app->getSession()->setFlash('success', Yii::t('user', 'Changes saved successfully.'));
-		}
-
-		return $this->render('index', [
-			'model' => $model,
-		]);
+	public function actions() {
+		return [
+			'index' => 'cms\user\common\actions\Settings',
+		];
 	}
 
 	/**
