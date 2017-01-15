@@ -19,12 +19,6 @@ $this->params['breadcrumbs'] = [
 	'enableClientValidation' => false,
 ]); ?>
 
-	<div class="form-group">
-		<div class="col-sm-offset-3 col-sm-6">
-			<p><?= Yii::t('user', 'Set a new password for your account.') ?></p>
-		</div>
-	</div>
-
 	<?= $form->field($model, 'oldPassword')->passwordInput() ?>
 	<?= $form->field($model, 'password')->passwordInput() ?>
 	<?= $form->field($model, 'confirm')->passwordInput() ?>
