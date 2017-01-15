@@ -22,6 +22,11 @@ class PasswordForm extends Model
 	public $confirm;
 
 	/**
+	 * @var boolean
+	 */
+	public $passwordChange;
+
+	/**
 	 * @var cms\user\common\models\User 
 	 */
 	private $_object;
@@ -45,6 +50,7 @@ class PasswordForm extends Model
 		return [
 			'password' => Yii::t('user', 'Password'),
 			'confirm' => Yii::t('user', 'Confirm'),
+			'passwordChange' => Yii::t('user', 'User must change password at next login'),
 		];
 	}
 
@@ -56,6 +62,7 @@ class PasswordForm extends Model
 		return [
 			['password', 'string', 'min' => 4],
 			['confirm', 'compare', 'compareAttribute' => 'password'],
+			['passwordChange', 'boolean'],
 			[['password', 'confirm'], 'required'],
 		];
 	}
@@ -81,6 +88,7 @@ class PasswordForm extends Model
 		$object = $this->_object;
 
 		$object->setPassword($this->password);
+		$object->passwordChange = $this->passwordChange == 0 ? false : true;
 
 		if (!$object->save(false))
 			return false;

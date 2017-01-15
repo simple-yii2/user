@@ -22,6 +22,7 @@ $this->params['breadcrumbs'] = [
 
 	<?= $form->field($model, 'password')->passwordInput() ?>
 	<?= $form->field($model, 'confirm')->passwordInput() ?>
+	<?= $form->field($model, 'passwordChange')->checkbox() ?>
 
 	<div class="form-group">
 		<div class="col-sm-offset-3 col-sm-6">
