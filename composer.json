@@ -13,7 +13,7 @@
     "require": {
         "yiisoft/yii2": "*",
         "yiisoft/yii2-jui": "*",
-        "dkhlystov/storage": "*",
+        "dkhlystov/yii2-storage": "*",
         "dkhlystov/yii2-uploadimage": "*"
     },
     "autoload": {
