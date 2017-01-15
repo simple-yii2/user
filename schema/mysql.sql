@@ -58,6 +58,7 @@ create table if not exists `User`
 	`confirmToken` varchar(50),
 	`authKey` varchar(50),
 	`comment` varchar(200),
+	`pic` varchar(200) default null,
 	primary key (`id`),
 	key `email` (`email`)
 ) engine InnoDB;

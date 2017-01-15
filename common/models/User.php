@@ -7,10 +7,12 @@ use yii\base\NotSupportedException;
 use yii\db\ActiveRecord;
 use yii\web\IdentityInterface;
 
+use dkhlystov\storage\components\StoredInterface;
+
 /**
  * User acrive record
  */
-class User extends ActiveRecord implements IdentityInterface
+class User extends ActiveRecord implements IdentityInterface, StoredInterface
 {
 
 	/**
@@ -238,6 +240,40 @@ class User extends ActiveRecord implements IdentityInterface
 	public function validateAuthKey($authKey)
 	{
 		return $this->getAuthKey() === $authKey;
+	}
+
+	/**
+	 * @inheritdoc
+	 * @see dkhlystov\storage\components\StoredInterface
+	 */
+	public function getOldFiles()
+	{
+		if (!empty($pic = $this->getOldAttribute('pic')))
+			return [$pic];
+
+		return [];
+	}
+
+	/**
+	 * @inheritdoc
+	 * @see dkhlystov\storage\components\StoredInterface
+	 */
+	public function getFiles()
+	{
+		if (!empty($pic = $this->getAttribute('pic')))
+			return [$pic];
+
+		return [];
+	}
+
+	/**
+	 * @inheritdoc
+	 * @see dkhlystov\storage\components\StoredInterface
+	 */
+	public function setFiles($files)
+	{
+		if (array_key_exists($this->pic, $files))
+			$this->pic = $files[$this->pic];
 	}
 
 }

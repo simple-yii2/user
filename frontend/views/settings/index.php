@@ -3,6 +3,8 @@
 use yii\bootstrap\ActiveForm;
 use yii\helpers\Html;
 
+use dkhlystov\uploadimage\widgets\UploadImage;
+
 $title = Yii::t('user', 'Settings');
 
 $this->title = $title . ' | ' . Yii::$app->name;
@@ -22,12 +24,20 @@ else $template = '<div class="input-group">{input}<span class="input-group-btn">
 	'enableClientValidation' => false,
 ]); ?>
 
-	<fieldset>
-		<?= $form->field($model, 'email', ['inputTemplate' => $template])->textInput(['disabled' => true]) ?>
-		<?= $form->field($model, 'firstName') ?>
-		<?= $form->field($model, 'lastName') ?>
-		<?= $form->field($model, 'mailing')->checkbox() ?>
-	</fieldset>
+	<?= $form->field($model, 'email', ['inputTemplate' => $template])->textInput(['disabled' => true]) ?>
+
+	<?= $form->field($model, 'firstName') ?>
+
+	<?= $form->field($model, 'lastName') ?>
+
+	<?= $form->field($model, 'image')->widget(UploadImage::className(), [
+		'thumbAttribute' => 'thumb',
+		'width' => 100,
+		'height' => 100,
+		'showPreview' => false,
+	]) ?>
+
+	<?= $form->field($model, 'mailing')->checkbox() ?>
 
 	<div class="form-group">
 		<div class="col-sm-offset-3 col-sm-6">

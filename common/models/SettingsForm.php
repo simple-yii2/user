@@ -14,6 +14,12 @@ class SettingsForm extends Model
 {
 
 	/**
+	 * @var string User picture
+	 */
+	public $image;
+	public $thumb;
+
+	/**
 	 * @var string User e-mail
 	 */
 	public $email;
@@ -46,10 +52,13 @@ class SettingsForm extends Model
 	{
 		$this->_object = $object;
 
+		$this->image = $this->thumb = $object->pic;
 		$this->email = $object->email;
 		$this->firstName = $object->firstName;
 		$this->lastName = $object->lastName;
 		$this->mailing = $object->mailing;
+
+		Yii::$app->storage->cacheObject($object);
 
 		parent::__construct($config);
 	}
@@ -60,6 +69,7 @@ class SettingsForm extends Model
 	public function attributeLabels()
 	{
 		return [
+			'image' => Yii::t('user', 'Photo'),
 			'email' => Yii::t('user', 'E-mail'),
 			'firstName' => Yii::t('user', 'First name'),
 			'lastName' => Yii::t('user', 'Last name'),
@@ -73,6 +83,7 @@ class SettingsForm extends Model
 	public function rules()
 	{
 		return [
+			[['image', 'thumb'], 'string', 'max' => 200],
 			[['firstName', 'lastName'], 'string', 'max' => 50],
 			['mailing', 'boolean'],
 		];
@@ -98,9 +109,12 @@ class SettingsForm extends Model
 
 		$object = $this->_object;
 
+		$object->pic = empty($this->thumb) ? null : $this->thumb;
 		$object->firstName = $this->firstName;
 		$object->lastName = $this->lastName;
 		$object->mailing = $this->mailing == 1;
+
+		Yii::$app->storage->storeObject($object);
 
 		if (!$object->save(false))
 			return false;

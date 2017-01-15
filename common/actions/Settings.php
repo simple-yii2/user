@@ -25,6 +25,7 @@ class Settings extends Action {
 
 		if ($model->load(Yii::$app->getRequest()->post()) && $model->save()) {
 			Yii::$app->getSession()->setFlash('success', Yii::t('user', 'Changes saved successfully.'));
+			return $this->controller->refresh();
 		}
 
 		return $this->controller->render('index', [

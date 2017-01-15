@@ -12,7 +12,9 @@
     ],
     "require": {
         "yiisoft/yii2": "*",
-        "yiisoft/yii2-jui": "*"
+        "yiisoft/yii2-jui": "*",
+        "dkhlystov/storage": "*",
+        "dkhlystov/yii2-uploadimage": "*"
     },
     "autoload": {
         "psr-4": {
