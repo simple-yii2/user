@@ -28,7 +28,7 @@ $this->params['breadcrumbs'] = [
 
 	<fieldset>
 		<?= $form->field($model, 'email') ?>
-		<?= $form->field($model, 'verifyCode')->widget(Captcha::className(), [
+		<?= $form->field($model, 'verificationCode')->widget(Captcha::className(), [
 			'options' => ['class' => 'form-control', 'autocomplete' => 'off'],
 			'captchaAction' => ['/site/captcha'],
 			'template' => '<div class="captcha">{image}<div>{input}</div></div>',

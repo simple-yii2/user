@@ -19,9 +19,9 @@ class PasswordResetRequestForm extends Model
 	public $email;
 
 	/**
-	 * @var string Verify code
+	 * @var string Verification code
 	 */
-	public $verifyCode;
+	public $verificationCode;
 
 	/**
 	 * @inheritdoc
@@ -30,7 +30,7 @@ class PasswordResetRequestForm extends Model
 	{
 		return [
 			'email' => Yii::t('user', 'E-mail'),
-			'verifyCode' => Yii::t('user', 'Verify code'),
+			'verificationCode' => Yii::t('user', 'Verification code'),
 		];
 	}
 
@@ -41,13 +41,13 @@ class PasswordResetRequestForm extends Model
 	{
 		return [
 			['email', 'filter', 'filter' => 'trim'],
-			[['email', 'verifyCode'], 'required'],
+			[['email', 'verificationCode'], 'required'],
 			['email', 'email'],
 			['email', 'exist',
 				'targetClass' => '\cms\user\common\models\User',
 				'filter' => ['active' => true],
 			],
-			['verifyCode', 'captcha'],
+			['verificationCode', 'captcha'],
 		];
 	}
 

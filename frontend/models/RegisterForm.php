@@ -39,9 +39,9 @@ class RegisterForm extends Model
 	public $lastName;
 
 	/**
-	 * @var string Verify code
+	 * @var string Verification code
 	 */
-	public $verifyCode;
+	public $verificationCode;
 
 	/**
 	 * @var boolean Agree for mailing
@@ -80,7 +80,7 @@ class RegisterForm extends Model
 			'confirm' => Yii::t('user', 'Confirm'),
 			'firstName' => Yii::t('user', 'First name'),
 			'lastName' => Yii::t('user', 'Last name'),
-			'verifyCode' => Yii::t('user', 'Verify code'),
+			'verificationCode' => Yii::t('user', 'Verification code'),
 			'mailing' => Yii::t('user', 'Notify about promotions, discounts, news'),
 		];
 	}
@@ -91,12 +91,12 @@ class RegisterForm extends Model
 	public function rules()
 	{
 		return [
-			[['email', 'password', 'confirm', 'verifyCode'], 'required'],
+			[['email', 'password', 'confirm', 'verificationCode'], 'required'],
 			['email', 'email'],
 			['password', 'string', 'min' => 4],
 			['confirm', 'compare', 'compareAttribute' => 'password'],
 			[['firstName', 'lastName'], 'string', 'max' => 50],
-			['verifyCode', 'captcha'],
+			['verificationCode', 'captcha'],
 			['mailing', 'boolean'],
 			['email', function($attribute, $params) {
 				if (User::find()->where(['email' => $this->email])->count() > 0) {

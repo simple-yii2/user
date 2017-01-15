@@ -40,7 +40,7 @@ return [
 	'Administrator' => 'Администратор',
 	'First name' => 'Имя',
 	'Last name' => 'Фамилия',
-	'Verify code' => 'Проверочный код',
+	'Verification code' => 'Проверочный код',
 	'Notify about promotions, discounts, news' => 'Сообщать об акциях, скидках, новостях',
 	'The entered e-mail is already in use.' => 'Введенный e-mail уже занят.',
 	'Registration' => 'Регистрация',
