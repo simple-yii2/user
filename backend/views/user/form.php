@@ -27,7 +27,7 @@ use yii\bootstrap\Tabs;
 	<div class="form-group">
 		<div class="col-sm-offset-3 col-sm-6">
 			<?= Html::submitButton(Yii::t('user', 'Save'), ['class' => 'btn btn-primary']) ?>
-			<?= Html::a(Yii::t('user', 'Cancel'), ['index'], ['class' => 'btn btn-link']) ?>
+			<?= Html::a(Yii::t('user', 'Cancel'), ['index'], ['class' => 'btn btn-default']) ?>
 		</div>
 	</div>
 
