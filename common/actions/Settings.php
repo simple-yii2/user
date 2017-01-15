@@ -5,7 +5,7 @@ namespace cms\user\common\actions;
 use Yii;
 use yii\base\Action;
 
-use cms\user\frontend\models\SettingsForm;
+use cms\user\common\models\SettingsForm;
 
 /**
  * User settings action

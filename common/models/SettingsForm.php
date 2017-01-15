@@ -1,6 +1,6 @@
 <?php
 
-namespace cms\user\frontend\models;
+namespace cms\user\common\models;
 
 use Yii;
 use yii\base\Model;
@@ -34,15 +34,15 @@ class SettingsForm extends Model
 	public $mailing;
 
 	/**
-	 * @var cms\user\common\models\User
+	 * @var User
 	 */
 	private $_object;
 
 	/**
 	 * @inheritdoc
-	 * @param cms\user\common\models\User $object 
+	 * @param User $object 
 	 */
-	public function __construct(\cms\user\common\models\User $object, $config = [])
+	public function __construct(User $object, $config = [])
 	{
 		$this->_object = $object;
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace cms\user\frontend\models;
+namespace cms\user\common\models;
 
 use Yii;
 use yii\base\Model;
@@ -86,6 +86,7 @@ class PasswordChangeForm extends Model
 		$object = $this->_object;
 
 		$object->setPassword($this->password);
+		$object->passwordChange = false;
 
 		return $object->save();
 	}

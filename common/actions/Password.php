@@ -5,7 +5,7 @@ namespace cms\user\common\actions;
 use Yii;
 use yii\base\Action;
 
-use cms\user\frontend\models\PasswordChangeForm;
+use cms\user\common\models\PasswordChangeForm;
 
 /**
  * Password change action
@@ -28,8 +28,7 @@ class Password extends Action {
 		//read user data
 		if ($model->load(Yii::$app->request->post()) && $model->changePassword()) {
 			Yii::$app->getSession()->setFlash('success', Yii::t('user', 'The new password has been set.'));
-
-			return $this->controller->redirect(['settings/index']);
+			return $this->controller->goBack();
 		}
 
 		return $this->controller->render('index', [
