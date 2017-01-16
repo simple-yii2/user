@@ -35,6 +35,15 @@ class User extends ActiveRecord implements IdentityInterface, StoredInterface
 	}
 
 	/**
+	 * Auth relation
+	 * @return yii\db\ActiveQueryInterface
+	 */
+	public function getAuth()
+	{
+		return $this->hasMany(UserAuth::className(), ['user_id' => 'id'])->inverseOf('user');
+	}
+
+	/**
 	 * Find user by e-mail
 	 * @param sring $email 
 	 * @return User
@@ -70,7 +79,8 @@ class User extends ActiveRecord implements IdentityInterface, StoredInterface
 	 * @return boolean
 	 */
 	public function login($duration = null) {
-		if ($duration === null) $duration = 3600*24*30;
+		if ($duration === null)
+			$duration = 3600*24*30;
 
 		$this->loginDate = gmdate('Y-m-d H:i:s');
 		$this->loginIP = Yii::$app->request->userIP;
@@ -98,7 +108,8 @@ class User extends ActiveRecord implements IdentityInterface, StoredInterface
 	{
 		if (empty($this->confirmToken)) {
 			$this->confirmToken = Yii::$app->security->generateRandomString().'_'.time();
-			if (!$this->save()) return false;
+			if (!$this->save())
+				return false;
 		}
 
 		$content = Yii::$app->controller->renderFile(dirname(__DIR__) . '/../mail/confirm.php', ['user' => $this]);

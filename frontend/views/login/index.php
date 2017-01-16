@@ -1,7 +1,12 @@
 <?php
 
-use yii\helpers\Html;
+use yii\authclient\widgets\AuthChoice;
 use yii\bootstrap\ActiveForm;
+use yii\helpers\Html;
+
+use cms\user\frontend\assets\SocialAsset;
+
+SocialAsset::register($this);
 
 $title = Yii::t('user', 'Login');
 
@@ -19,11 +24,22 @@ $this->params['breadcrumbs'] = [
 	'enableClientValidation' => false,
 ]); ?>
 
-	<fieldset>
-		<?= $form->field($model, 'email')->textInput() ?>
-		<?= $form->field($model, 'password')->passwordInput() ?>
-		<?= $form->field($model, 'rememberMe')->checkbox() ?>
-	</fieldset>
+	<?php if (Yii::$app->has('authClientCollection')): ?>
+	<div class="form-group">
+		<div class="col-sm-offset-3 col-sm-6">
+			<?= AuthChoice::widget([
+				'baseAuthUrl' => ['auth/index'],
+				'popupMode' => false,
+			]) ?>
+		</div>
+	</div>
+	<?php endif; ?>
+
+	<?= $form->field($model, 'email')->textInput() ?>
+
+	<?= $form->field($model, 'password')->passwordInput() ?>
+
+	<?= $form->field($model, 'rememberMe')->checkbox() ?>
 
 	<div class="form-group">
 		<div class="col-sm-offset-3 col-sm-6">

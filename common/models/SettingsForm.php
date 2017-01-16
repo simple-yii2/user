@@ -64,6 +64,15 @@ class SettingsForm extends Model
 	}
 
 	/**
+	 * Object getter
+	 * @return User
+	 */
+	public function getObject()
+	{
+		return $this->_object;
+	}
+
+	/**
 	 * @inheritdoc
 	 */
 	public function attributeLabels()

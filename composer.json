@@ -13,6 +13,7 @@
     "require": {
         "yiisoft/yii2": "*",
         "yiisoft/yii2-jui": "*",
+        "yiisoft/yii2-authclient": "~2.1.0",
         "dkhlystov/yii2-storage": "*",
         "dkhlystov/yii2-uploadimage": "*"
     },

@@ -1,9 +1,13 @@
 <?php
 
+use yii\authclient\widgets\AuthChoice;
 use yii\bootstrap\ActiveForm;
 use yii\helpers\Html;
 
 use dkhlystov\uploadimage\widgets\UploadImage;
+use cms\user\frontend\assets\SocialAsset;
+
+SocialAsset::register($this);
 
 $title = Yii::t('user', 'Settings');
 
@@ -15,6 +19,10 @@ $this->params['breadcrumbs'] = [
 
 if ($model->confirmed) $template = '{input}';
 else $template = '<div class="input-group">{input}<span class="input-group-btn">'.Html::a(Yii::t('user', 'Confirm e-mail'), ['confirm'], ['class' => 'btn btn-default']).'</span></div>';
+
+$authItems = array_map(function($v) {
+	return $v->source;
+}, $model->getObject()->auth);
 
 ?>
 <h1><?= Html::encode($title) ?></h1>
@@ -36,6 +44,29 @@ else $template = '<div class="input-group">{input}<span class="input-group-btn">
 		'height' => 100,
 		'showPreview' => false,
 	]) ?>
+
+	<?php if (Yii::$app->has('authClientCollection')): ?>
+	<div class="form-group">
+		<label class="control-label col-sm-3"><?= Yii::t('user', 'Social networks') ?></label>
+		<div class="col-sm-6">
+			<?php 
+				$authChoice = AuthChoice::begin([
+					'baseAuthUrl' => ['auth/index'],
+					'popupMode' => false,
+				]);
+
+				$clients = [];
+				foreach ($authChoice->getClients() as $client) {
+					if (!in_array($client->getId(), $authItems))
+						$clients[] = $client;
+				}
+				$authChoice->setClients($clients);
+
+				AuthChoice::end();
+			?>
+		</div>
+	</div>
+	<?php endif; ?>
 
 	<?= $form->field($model, 'mailing')->checkbox() ?>
 

@@ -73,4 +73,8 @@ return [
 	'Password change required' => 'Необходима смена пароля',
 	'User must change password at next login' => 'Требовать смены пароля при следующем входе',
 	'Photo' => 'Фото',
+	'Unable to link {client} account. There is another user using it.' => 'Не удалось подключить учетную запись {client}. Ее уже использует другой пользователь.',
+	'User with the same email as in {client} account already exists but isn\'t linked to it. Login using email first to link it.' => 'Пользователь с таким e-mail, как и в учетной записи {client} уже существует, но не связан с ней. Необходимо сначала войти при помощи e-mail, чтобы связать их.',
+	'Social networks' => 'Социальные сети',
+	'Linked {client} account.' => 'Учетная запись {client} связана с пользователем.',
 ];

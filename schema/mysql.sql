@@ -43,7 +43,7 @@ create table if not exists `User`
 (
 	`id` int(10) not null auto_increment,
 	`admin` tinyint(1) default 0,
-	`email` varchar(100) not null,
+	`email` varchar(100) default null,
 	`passwordHash` varchar(60),
 	`passwordChange` tinyint(1) default 0,
 	`active` tinyint(1) default 1,
@@ -61,4 +61,14 @@ create table if not exists `User`
 	`pic` varchar(200) default null,
 	primary key (`id`),
 	key `email` (`email`)
+) engine InnoDB;
+
+create table if not exists `UserAuth`
+(
+	`id` int(10) not null auto_increment,
+	`user_id` int(10) not null,
+	`source` varchar(50),
+	`source_id` varchar(50),
+	primary key (`id`),
+	foreign key (`user_id`) references `User` (`id`) on delete cascade on update cascade
 ) engine InnoDB;
