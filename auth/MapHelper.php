@@ -1,6 +1,6 @@
 <?php
 
-namespace cms\user\common\components\auth;
+namespace cms\user\auth;
 
 use yii\authclient\ClientInterface;
 

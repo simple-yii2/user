@@ -1,19 +1,18 @@
 <?php
 
-namespace cms\user\common\components;
+namespace cms\user\auth;
 
 use Yii;
 use yii\authclient\ClientInterface;
 use yii\helpers\ArrayHelper;
 
-use cms\user\common\components\auth\MapHelper;
 use cms\user\common\models\User;
 use cms\user\common\models\UserAuth;
 
 /**
- * AuthHandler handles successful authentication via Yii auth component
+ * Auth handler handles successful authentication via Yii auth component
  */
-class AuthHandler
+class Handler
 {
 
 	/**

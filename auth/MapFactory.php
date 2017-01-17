@@ -1,6 +1,6 @@
 <?php
 
-namespace cms\user\common\components\auth;
+namespace cms\user\auth;
 
 use yii\authclient\ClientInterface;
 use yii\helpers\ArrayHelper;
@@ -9,8 +9,8 @@ class MapFactory
 {
 
 	private static $_classes = [
-		'google' => 'cms\user\common\components\auth\map\Google',
-		'vkontakte' => 'cms\user\common\components\auth\map\VKontakte',
+		'google' => 'cms\user\auth\map\Google',
+		'vkontakte' => 'cms\user\auth\map\VKontakte',
 	];
 
 	/**

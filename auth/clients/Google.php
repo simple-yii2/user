@@ -1,6 +1,6 @@
 <?php
 
-namespace cms\user\common\components\auth\clients;
+namespace cms\user\auth\clients;
 
 class Google extends \yii\authclient\clients\Google
 {

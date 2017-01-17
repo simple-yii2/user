@@ -1,6 +1,6 @@
 <?php
 
-namespace cms\user\common\components\auth\map;
+namespace cms\user\auth\map;
 
 use yii\helpers\ArrayHelper;
 

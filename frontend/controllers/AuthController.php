@@ -4,7 +4,7 @@ namespace cms\user\frontend\controllers;
 
 use yii\web\Controller;
 
-use cms\user\common\components\AuthHandler;
+use cms\user\auth\Handler;
 
 class AuthController extends Controller
 {
@@ -23,7 +23,7 @@ class AuthController extends Controller
 
 	public function onAuthSuccess($client)
 	{
-		(new AuthHandler($client))->handle();
+		(new Handler($client))->handle();
 	}
 
 }
