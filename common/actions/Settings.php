@@ -19,7 +19,7 @@ class Settings extends Action {
 		$user = Yii::$app->getUser();
 
 		if ($user->isGuest)
-			return $this->goHome();
+			return $this->controller->goHome();
 
 		$model = new SettingsForm($user->getIdentity());
 
