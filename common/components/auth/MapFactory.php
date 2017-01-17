@@ -5,12 +5,12 @@ namespace cms\user\common\components\auth;
 use yii\authclient\ClientInterface;
 use yii\helpers\ArrayHelper;
 
-class AuthMapFactory
+class MapFactory
 {
 
 	private static $_classes = [
-		'google' => 'cms\user\common\components\auth\map\AuthMapGoogle',
-		'vkontakte' => 'cms\user\common\components\auth\map\AuthMapVKontakte',
+		'google' => 'cms\user\common\components\auth\map\Google',
+		'vkontakte' => 'cms\user\common\components\auth\map\VKontakte',
 	];
 
 	/**

@@ -6,7 +6,7 @@ use Yii;
 use yii\authclient\ClientInterface;
 use yii\helpers\ArrayHelper;
 
-use cms\user\common\components\auth\AuthMapHelper;
+use cms\user\common\components\auth\MapHelper;
 use cms\user\common\models\User;
 use cms\user\common\models\UserAuth;
 
@@ -37,7 +37,7 @@ class AuthHandler
 	{
 		$client = $this->_client;
 
-		$attributes = AuthMapHelper::getUserAttributes($client);
+		$attributes = MapHelper::getUserAttributes($client);
 		$id = ArrayHelper::getValue($attributes, 'id');
 		if ($id === null)
 			throw new \Exception("Identifier is not defined.");

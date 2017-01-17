@@ -4,7 +4,7 @@ namespace cms\user\common\components\auth\map;
 
 use yii\helpers\ArrayHelper;
 
-class AuthMapGoogle extends BaseAuthMap
+class Google extends Base
 {
 
 	public function getMap()

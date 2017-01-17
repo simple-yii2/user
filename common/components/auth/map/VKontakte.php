@@ -4,7 +4,7 @@ namespace cms\user\common\components\auth\map;
 
 use yii\helpers\ArrayHelper;
 
-class AuthMapVKontakte extends BaseAuthMap
+class VKontakte extends Base
 {
 
 	public function getMap()

@@ -7,7 +7,7 @@ use yii\authclient\ClientInterface;
 /**
  * Auth map helper
  */
-class AuthMapHelper
+class MapHelper
 {
 
 	/**
@@ -17,7 +17,7 @@ class AuthMapHelper
 	 */
 	public static function getUserAttributes(ClientInterface $client)
 	{
-		$authMap = AuthMapFactory::createObject($client);
+		$authMap = MapFactory::createObject($client);
 		$map = $authMap->getMap();
 
 		$client->setNormalizeUserAttributeMap($map);
