@@ -12,6 +12,7 @@ class MapFactory
 		'google' => 'cms\user\auth\map\Google',
 		'vkontakte' => 'cms\user\auth\map\VKontakte',
 		'facebook' => 'cms\user\auth\map\Facebook',
+		'odnoklassniki' => 'cms\user\auth\map\Odnoklassniki',
 	];
 
 	/**

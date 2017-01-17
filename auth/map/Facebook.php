@@ -15,8 +15,12 @@ class Facebook extends Base
 			'firstName' => 'first_name',
 			'lastName' => 'last_name',
 			'pic' => function($attributes) use ($client) {
-				$client->apiBaseUrl = 'http://graph.facebook.com';
-				$data = $client->api("/v2.8/{$attributes['id']}/picture?redirect=0&width=100&height=100", 'GET');
+				$client->apiBaseUrl = 'http://graph.facebook.com/v2.8';
+				$data = $client->api("{$attributes['id']}/picture", 'GET', [
+					'redirect' => 0,
+					'width' => 100,
+					'height' => 100,
+				]);
 
 				return ArrayHelper::getValue($data, ['data', 'url']);
 			},

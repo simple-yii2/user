@@ -5,3 +5,9 @@
 .auth-clients li {
 	margin-right: 5px;
 }
+.auth-icon {
+	background-image: url('authchoice.png');
+}
+.auth-icon.odnoklassniki {
+	background-position: 0 -306px;
+}
