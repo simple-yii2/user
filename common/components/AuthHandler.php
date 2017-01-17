@@ -29,6 +29,10 @@ class AuthHandler
 		$this->_client = $client;
 	}
 
+	/**
+	 * Handling auth response
+	 * @return void
+	 */
 	public function handle()
 	{
 		$client = $this->_client;
@@ -58,6 +62,11 @@ class AuthHandler
 		}
 	}
 
+	/**
+	 * Register new user linked to auth client and login
+	 * @param array $attributes 
+	 * @return void
+	 */
 	private function register($attributes)
 	{
 		$client = $this->_client;
@@ -72,9 +81,9 @@ class AuthHandler
 			'email' => $email,
 			'lastName' => ArrayHelper::getValue($attributes, 'lastName'),
 			'firstName' => ArrayHelper::getValue($attributes, 'firstName'),
-			'mailing' => 0,
-			'pic' => ArrayHelper::getValue($attributes, 'pic'),
+			'mailing' => false,
 		]);
+		$this->setUserPic($user, $attributes);
 		$user->setPassword(Yii::$app->security->generateRandomString(8));
 
 		if ($user->save(false)) {
@@ -88,6 +97,11 @@ class AuthHandler
 		}
 	}
 
+	/**
+	 * Link auth client account to current user
+	 * @param array $attributes 
+	 * @return void
+	 */
 	private function link($attributes)
 	{
 		$auth = new UserAuth([
@@ -103,21 +117,32 @@ class AuthHandler
 					'lastName' => ArrayHelper::getValue($attributes, 'lastName'),
 				], false);
 			}
-			if ($user->pic === null) {
-				$pic = ArrayHelper::getValue($attributes, 'pic');
-				if ($pic !== null) {
-					$info = parse_url($pic);
-					$filename = Yii::$app->storage->generateTmpName($info['path']);
-					if (@copy($pic, Yii::getAlias('@webroot') . $filename)) {
-						$user->pic = $filename;
-						Yii::$app->storage->storeObject($user);
-					}
-				}				
-			}
+			$this->setUserPic($user, $attributes);
 
 			$user->save(false);
 
 			Yii::$app->getSession()->setFlash('success', Yii::t('user', 'Linked {client} account.', ['client' => $this->_client->getTitle()]));
+		}
+	}
+
+	/**
+	 * Sets user pic if needed
+	 * @param User $user 
+	 * @param array $attributes 
+	 * @return void
+	 */
+	private function setUserPic(User $user, $attributes)
+	{
+		if ($user->pic === null) {
+			$pic = ArrayHelper::getValue($attributes, 'pic');
+			if ($pic !== null) {
+				$info = parse_url($pic);
+				$filename = Yii::$app->storage->generateTmpName($info['path']);
+				if (@copy($pic, Yii::getAlias('@webroot') . $filename)) {
+					$user->pic = $filename;
+					Yii::$app->storage->storeObject($user);
+				}
+			}				
 		}
 	}
 

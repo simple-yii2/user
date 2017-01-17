@@ -3,10 +3,9 @@
 use yii\authclient\widgets\AuthChoice;
 use yii\bootstrap\ActiveForm;
 use yii\helpers\Html;
+use cms\user\frontend\assets\AuthChoiceAsset;
 
-use cms\user\frontend\assets\SocialAsset;
-
-SocialAsset::register($this);
+AuthChoiceAsset::register($this);
 
 $title = Yii::t('user', 'Login');
 

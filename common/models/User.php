@@ -18,20 +18,20 @@ class User extends ActiveRecord implements IdentityInterface, StoredInterface
 	/**
 	 * @inheritdoc
 	 */
-	public static function tableName()
+	public function __construct($config = [])
 	{
-		return 'User';
+		$this->active = true;
+		$this->mailing = true;
+
+		parent::__construct($config);
 	}
 
 	/**
 	 * @inheritdoc
 	 */
-	public function init()
+	public static function tableName()
 	{
-		parent::init();
-
-		$this->active = true;
-		$this->mailing = true;
+		return 'User';
 	}
 
 	/**

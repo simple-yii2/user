@@ -9,7 +9,8 @@ class AuthMapFactory
 {
 
 	private static $_classes = [
-		'google' => 'cms\user\common\components\auth\AuthMapGoogle',
+		'google' => 'cms\user\common\components\auth\map\AuthMapGoogle',
+		'vkontakte' => 'cms\user\common\components\auth\map\AuthMapVKontakte',
 	];
 
 	/**
@@ -22,7 +23,7 @@ class AuthMapFactory
 		$class = ArrayHelper::getValue(self::$_classes, $client->getId());
 
 		if ($class === null)
-			throw new \Exception('Provider "' . $client->getId() . '" is not supported.');
+			throw new \Exception('Auth client "' . $client->getId() . '" is not supported.');
 
 		return new $class;
 	}

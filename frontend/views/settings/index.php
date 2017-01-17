@@ -5,9 +5,9 @@ use yii\bootstrap\ActiveForm;
 use yii\helpers\Html;
 
 use dkhlystov\uploadimage\widgets\UploadImage;
-use cms\user\frontend\assets\SocialAsset;
+use cms\user\frontend\assets\AuthChoiceAsset;
 
-SocialAsset::register($this);
+AuthChoiceAsset::register($this);
 
 $title = Yii::t('user', 'Settings');
 
@@ -32,7 +32,7 @@ $authItems = array_map(function($v) {
 	'enableClientValidation' => false,
 ]); ?>
 
-	<?= $form->field($model, 'email', ['inputTemplate' => $template])->textInput(['disabled' => true]) ?>
+	<?php if (!empty($model->email)) echo $form->field($model, 'email', ['inputTemplate' => $template])->textInput(['disabled' => true]); ?>
 
 	<?= $form->field($model, 'firstName') ?>
 
@@ -68,7 +68,7 @@ $authItems = array_map(function($v) {
 	</div>
 	<?php endif; ?>
 
-	<?= $form->field($model, 'mailing')->checkbox() ?>
+	<?php if (!empty($model->email)) echo $form->field($model, 'mailing')->checkbox(); ?>
 
 	<div class="form-group">
 		<div class="col-sm-offset-3 col-sm-6">

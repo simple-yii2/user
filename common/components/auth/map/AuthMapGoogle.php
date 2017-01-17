@@ -1,6 +1,6 @@
 <?php
 
-namespace cms\user\common\components\auth;
+namespace cms\user\common\components\auth\map;
 
 use yii\helpers\ArrayHelper;
 
@@ -25,7 +25,7 @@ class AuthMapGoogle extends BaseAuthMap
 					return null;
 
 				return "{$info['scheme']}://{$info['host']}{$info['path']}?sz=100";
-			}
+			},
 		];
 	}
 
