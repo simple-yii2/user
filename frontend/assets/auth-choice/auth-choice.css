@@ -11,3 +11,7 @@
 .auth-icon.odnoklassniki {
 	background-position: 0 -306px;
 }
+.auth-icon.linked {
+	opacity: 0.3;
+	position: relative;
+}

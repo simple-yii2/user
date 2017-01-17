@@ -49,21 +49,29 @@ $authItems = array_map(function($v) {
 	<div class="form-group">
 		<label class="control-label col-sm-3"><?= Yii::t('user', 'Social networks') ?></label>
 		<div class="col-sm-6">
-			<?php 
-				$authChoice = AuthChoice::begin([
-					'baseAuthUrl' => ['auth/index'],
-					'popupMode' => false,
-				]);
-
-				$clients = [];
+			<?php $authChoice = AuthChoice::begin([
+				'baseAuthUrl' => ['auth/index'],
+				'popupMode' => false,
+			]); ?>
+			<ul class="auth-clients">
+				<?php
 				foreach ($authChoice->getClients() as $client) {
-					if (!in_array($client->getId(), $authItems))
-						$clients[] = $client;
-				}
-				$authChoice->setClients($clients);
+					$name = $client->getName();
+					$isLinked = in_array($name, $authItems);
 
-				AuthChoice::end();
-			?>
+					$options = ['class' => 'auth-icon ' . $name];
+					if ($isLinked)
+						Html::addCssClass($options, 'linked');
+
+					$text = Html::tag('span', '', $options);
+					
+					$clientLink = $authChoice->clientLink($client, $text);
+
+					echo Html::tag('li', $isLinked ? $text : $clientLink);
+				}
+				?>
+			</ul>
+			<?php AuthChoice::end(); ?>
 		</div>
 	</div>
 	<?php endif; ?>
