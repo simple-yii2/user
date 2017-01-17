@@ -11,6 +11,7 @@ class MapFactory
 	private static $_classes = [
 		'google' => 'cms\user\auth\map\Google',
 		'vkontakte' => 'cms\user\auth\map\VKontakte',
+		'facebook' => 'cms\user\auth\map\Facebook',
 	];
 
 	/**

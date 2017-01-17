@@ -18,7 +18,7 @@ class MapHelper
 	public static function getUserAttributes(ClientInterface $client)
 	{
 		$authMap = MapFactory::createObject($client);
-		$map = $authMap->getMap();
+		$map = $authMap->getMap($client);
 
 		$client->setNormalizeUserAttributeMap($map);
 

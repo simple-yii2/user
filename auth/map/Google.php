@@ -7,7 +7,7 @@ use yii\helpers\ArrayHelper;
 class Google extends Base
 {
 
-	public function getMap()
+	public function getMap(\yii\authclient\ClientInterface $client)
 	{
 		return [
 			'id' => 'id',
