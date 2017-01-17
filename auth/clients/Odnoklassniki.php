@@ -80,4 +80,18 @@ class Odnoklassniki extends OAuth2
 		return 'Odnoklassniki';
 	}
 
+	/**
+	 * @inheritdoc
+	 */
+	protected function defaultNormalizeUserAttributeMap()
+	{
+		return [
+			'id' => 'uid',
+			'email' => 'email',
+			'firstName' => 'first_name',
+			'lastName' => 'last_name',
+			'pic' => 'pic128x128',
+		];
+	}
+
 }

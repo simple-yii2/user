@@ -36,7 +36,7 @@ class Handler
 	{
 		$client = $this->_client;
 
-		$attributes = MapHelper::getUserAttributes($client);
+		$attributes = $client->getUserAttributes();
 		$id = ArrayHelper::getValue($attributes, 'id');
 		if ($id === null)
 			throw new \Exception("Identifier is not defined.");
