@@ -11,10 +11,6 @@ $title = Yii::t('user', 'Login');
 
 $this->title = $title . ' | ' . Yii::$app->name;
 
-$this->params['breadcrumbs'] = [
-	$title,
-];
-
 ?>
 <h1><?= Html::encode($title) ?></h1>
 

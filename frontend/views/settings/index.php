@@ -13,10 +13,6 @@ $title = Yii::t('user', 'Settings');
 
 $this->title = $title . ' | ' . Yii::$app->name;
 
-$this->params['breadcrumbs'] = [
-	$title,
-];
-
 if ($model->confirmed) $template = '{input}';
 else $template = '<div class="input-group">{input}<span class="input-group-btn">'.Html::a(Yii::t('user', 'Confirm e-mail'), ['confirm'], ['class' => 'btn btn-default']).'</span></div>';
 
