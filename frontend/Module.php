@@ -1,6 +1,6 @@
 <?php
 
-namespace cms\user;
+namespace cms\user\frontend;
 
 use cms\components\BaseModule;
 
