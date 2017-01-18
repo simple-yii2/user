@@ -60,7 +60,7 @@ create table if not exists `User`
 	`comment` varchar(200),
 	`pic` varchar(200) default null,
 	primary key (`id`),
-	key `email` (`email`)
+	unique key `email` (`email`)
 ) engine InnoDB;
 
 create table if not exists `UserAuth`

@@ -5,41 +5,48 @@ namespace cms\user\backend;
 use Yii;
 use yii\helpers\Html;
 
+use cms\components\BackendModule;
 use cms\user\common\components\AuthorRule;
 use cms\user\common\models\User;
 
 /**
  * User backend module
  */
-class Module extends \yii\base\Module {
+class Module extends BackendModule {
 
 	/**
 	 * @inheritdoc
 	 */
-	public function init()
+	public static function moduleName()
 	{
-		parent::init();
-
-		$this->checkDatabase();
-		self::addTranslation();
+		return 'user';
 	}
 
 	/**
-	 * Database checking
-	 * @return void
+	 * @inheritdoc
 	 */
-	protected function checkDatabase()
+	protected static function cmsDatabase()
 	{
-		//schema
-		$db = Yii::$app->db;
-		$filename = dirname(__DIR__) . '/schema/' . $db->driverName . '.sql';
-		$sql = explode(';', file_get_contents($filename));
-		foreach ($sql as $s) {
-			if (trim($s) !== '')
-				$db->createCommand($s)->execute();
-		}
+		parent::cmsDatabase();
 
-		//rbac
+		if (User::find()->where(['email' => 'admin'])->count() == 0) {
+			$model = new User([
+				'admin' => true,
+				'active' => true,
+				'email' => 'admin',
+				'mailing' => false,
+				'passwordChange' => true,
+			]);
+			$model->setPassword('admin');
+			$model->save();
+		}
+	}
+
+	/**
+	 * @inheritdoc
+	 */
+	protected static function cmsSecurity()
+	{
 		$auth = Yii::$app->getAuthManager();
 		if ($auth->getRole('author') === null) {
 			//author role
@@ -55,67 +62,36 @@ class Module extends \yii\base\Module {
 			//add permission with rule to role
 			$auth->addChild($author, $own);
 		}
-
-		//data
-		if (User::find()->andWhere(['admin' => true, 'active' => true])->count() == 0) {
-			$model = new User([
-				'admin' => true,
-				'active' => true,
-				'email' => 'admin',
-				'mailing' => false,
-				'passwordChange' => true,
-			]);
-			$model->setPassword('admin');
-			$model->save();
-		}
 	}
 
 	/**
-	 * Adding translation to i18n
-	 * @return void
+	 * @inheritdoc
 	 */
-	protected static function addTranslation()
+	public static function cmsMenu($base)
 	{
-		if (!isset(Yii::$app->i18n->translations['user'])) {
-			Yii::$app->i18n->translations['user'] = [
-				'class' => 'yii\i18n\PhpMessageSource',
-				'sourceLanguage' => 'en-US',
-				'basePath' => dirname(__DIR__) . '/messages',
-			];
-		}
+		self::cmsTranslation();
+
+		if (!Yii::$app->user->can('admin'))
+			return [];
+
+		return [
+			['label' => Yii::t('user', 'Security'), 'items' => [
+				['label' => Yii::t('user', 'Permissions'), 'url' => ["$base/user/permission/index"]],
+				['label' => Yii::t('user', 'Roles'), 'url' => ["$base/user/role/index"]],
+				'<li role="separator" class="divider"></li>',
+				['label' => Yii::t('user', 'Users'), 'url' => ["$base/user/user/index"]],
+			]],
+		];
 	}
 
 	/**
-	 * Making module menu.
-	 * @param string $base route base
+	 * Making user module menu
+	 * @param string $base base path for making url routes
 	 * @return array
 	 */
-	public static function getMenu($base)
+	public static function cmsUserMenu($base)
 	{
-		self::addTranslation();
-
-		if (Yii::$app->user->can('admin')) {
-			return [
-				['label' => Yii::t('user', 'Security'), 'items' => [
-					['label' => Yii::t('user', 'Permissions'), 'url' => ["$base/user/permission/index"]],
-					['label' => Yii::t('user', 'Roles'), 'url' => ["$base/user/role/index"]],
-					'<li role="separator" class="divider"></li>',
-					['label' => Yii::t('user', 'Users'), 'url' => ["$base/user/user/index"]],
-				]],
-			];
-		}
-		
-		return [];
-	}
-
-	/**
-	 * Making user module menu.
-	 * @param string $base route base
-	 * @return array
-	 */
-	public static function getUserMenu($base)
-	{
-		self::addTranslation();
+		self::cmsTranslation();
 
 		if (Yii::$app->user->isGuest)
 			return [];
