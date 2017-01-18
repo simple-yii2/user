@@ -69,8 +69,6 @@ class Module extends BackendModule {
 	 */
 	public static function cmsMenu($base)
 	{
-		self::cmsTranslation();
-
 		if (!Yii::$app->user->can('admin'))
 			return [];
 
