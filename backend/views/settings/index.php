@@ -20,9 +20,10 @@ $this->params['breadcrumbs'] = [
 ]); ?>
 
 	<?= $form->field($model, 'email')->textInput(['disabled' => true]) ?>
+
 	<?= $form->field($model, 'firstName') ?>
+	
 	<?= $form->field($model, 'lastName') ?>
-	<?= $form->field($model, 'mailing')->checkbox() ?>
 
 	<div class="form-group">
 		<div class="col-sm-offset-3 col-sm-6">
