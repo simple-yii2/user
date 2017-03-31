@@ -29,6 +29,16 @@ class User extends \yii\web\User
 	private $_username;
 
 	/**
+	 * @inheritdoc
+	 */
+	public function init()
+	{
+		parent::init();
+
+		\cms\user\frontend\Module::cmsTranslation();
+	}
+
+	/**
 	 * Checking that user is administrator
 	 * @return boolean
 	 */
