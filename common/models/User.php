@@ -114,7 +114,12 @@ class User extends ActiveRecord implements IdentityInterface, StoredInterface
 
 		$content = Yii::$app->controller->renderFile(dirname(__DIR__) . '/../mail/confirm.php', ['user' => $this]);
 
+		$from = $this->email;
+		if (Yii::$app->mailer->transport instanceof \Swift_SmtpTransport)
+			$from = Yii::$app->mailer->transport->getUsername();
+
 		return Yii::$app->mailer->compose()
+			->setFrom($from)
 			->setTo($this->email)
 			->setSubject(Yii::t('user', 'E-mail confirmation'))
 			->setHtmlBody($content)
@@ -169,7 +174,12 @@ class User extends ActiveRecord implements IdentityInterface, StoredInterface
 
 		$content = Yii::$app->controller->renderFile(dirname(__DIR__) . '/../mail/reset.php', ['user' => $this]);
 
+		$from = $this->email;
+		if (Yii::$app->mailer->transport instanceof \Swift_SmtpTransport)
+			$from = Yii::$app->mailer->transport->getUsername();
+
 		return Yii::$app->mailer->compose()
+			->setFrom($from)
 			->setTo($this->email)
 			->setSubject(Yii::t('user', 'Password reset'))
 			->setHtmlBody($content)
