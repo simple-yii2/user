@@ -163,11 +163,10 @@ class UserForm extends Model
 			$roles[$name] = $auth->getRole($name);
 
 		//author
-		if ($isNewRecord) {
-			$author = $auth->getRole('author');
-			if ($author !== null)
-				$auth->assign($author, $object->id);
-		}
+		$author = $auth->getRole('author');
+		if ($author !== null)
+			$roles[] = $author;
+
 		//revoke
 		foreach (array_diff_key($oldRoles, $roles) as $role)
 			$auth->revoke($role, $object->id);
