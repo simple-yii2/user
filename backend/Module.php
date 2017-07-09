@@ -67,7 +67,7 @@ class Module extends BackendModule {
 	/**
 	 * @inheritdoc
 	 */
-	public static function cmsMenu($base)
+	public function cmsMenu($base)
 	{
 		if (!Yii::$app->user->can('admin'))
 			return [];
@@ -87,7 +87,7 @@ class Module extends BackendModule {
 	 * @param string $base base path for making url routes
 	 * @return array
 	 */
-	public static function cmsUserMenu($base)
+	public function cmsUserMenu($base)
 	{
 		self::cmsTranslation();
 
