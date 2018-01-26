@@ -3,7 +3,9 @@
 namespace cms\user\backend;
 
 use Yii;
+use yii\base\InvalidConfigException;
 use yii\helpers\Html;
+use yii\rbac\BaseManager;
 
 use cms\components\BackendModule;
 use cms\user\common\components\AuthorRule;
@@ -48,6 +50,10 @@ class Module extends BackendModule {
 	protected static function cmsSecurity()
 	{
 		$auth = Yii::$app->getAuthManager();
+
+		if (!($auth instanceof BaseManager))
+			throw new InvalidConfigException('You should to configure "authManager" application component inherited from yii\rbac\BaseManager class.');
+
 		if ($auth->getRole('author') === null) {
 			//author role
 			$author = $auth->createRole('author');
