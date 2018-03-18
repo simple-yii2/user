@@ -82,7 +82,7 @@ return [
 
 	//text
 	'Forgot your password?' => 'Забыли пароль?',
-	'By clicking "Register", you agree to the terms of use.' => 'Нажимая кнопку «Зарегистрироваться», Вы соглашаетесь с условиями использования.',
+	'By clicking "Register", you agree to the terms of use.' => 'Нажимая кнопку «Зарегистрироваться», Вы соглашаетесь с правилами использования.',
 	'Enter your e-mail. On it will be sent a link to reset your password.' => 'Введите Ваш e-mail. На него будет отправлена ссылка для восстановления пароля.',
 	'You know your password?' => 'Знаете пароль?',
 	'Set a new password for your account.' => 'Установите новый пароль для своей учётной записи.',
