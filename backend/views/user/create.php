@@ -7,8 +7,9 @@ $title = Yii::t('user', 'Create user');
 $this->title = $title . ' | ' . Yii::$app->name;
 
 $this->params['breadcrumbs'] = [
-	['label' => Yii::t('user', 'Users'), 'url' => ['index']],
-	$title,
+    Yii::t('user', 'Security'),
+    ['label' => Yii::t('user', 'Users'), 'url' => ['index']],
+    $title,
 ];
 
 ?>

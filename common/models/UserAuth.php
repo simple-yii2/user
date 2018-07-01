@@ -12,7 +12,7 @@ class UserAuth extends ActiveRecord
 	 */
 	public static function tableName()
 	{
-		return 'UserAuth';
+		return 'user_auth';
 	}
 
 	/**

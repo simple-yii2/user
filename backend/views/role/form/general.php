@@ -1,4 +1,4 @@
 <fieldset>
-	<?= $form->field($model, 'name') ?>
-	<?= $form->field($model, 'description') ?>
+    <?= $form->field($model, 'name') ?>
+    <?= $form->field($model, 'description') ?>
 </fieldset>

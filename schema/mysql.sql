@@ -39,7 +39,7 @@ create table if not exists `auth_assignment`
 	foreign key (`item_name`) references `auth_item` (`name`) on delete cascade on update cascade
 ) engine InnoDB;
 
-create table if not exists `User`
+create table if not exists `user`
 (
 	`id` int(10) not null auto_increment,
 	`admin` tinyint(1) default 0,
@@ -63,7 +63,7 @@ create table if not exists `User`
 	unique key `email` (`email`)
 ) engine InnoDB;
 
-create table if not exists `UserAuth`
+create table if not exists `user_auth`
 (
 	`id` int(10) not null auto_increment,
 	`user_id` int(10) not null,

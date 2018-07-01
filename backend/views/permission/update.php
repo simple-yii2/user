@@ -7,8 +7,9 @@ $title = $model->item->name;
 $this->title = $title . ' | ' . Yii::$app->name;
 
 $this->params['breadcrumbs'] = [
-	['label' => Yii::t('user', 'Permissions'), 'url' => ['index']],
-	$title,
+    Yii::t('user', 'Security'),
+    ['label' => Yii::t('user', 'Permissions'), 'url' => ['index']],
+    $title,
 ];
 
 ?>

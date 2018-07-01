@@ -94,9 +94,8 @@ class User extends \yii\web\User
 	public function passwordChangeRequired($checkAjax = true, $checkAcceptHeader = true)
 	{
 		$passwordChangeUrl = (array) $this->passwordChangeUrl;
-		if (Yii::$app->requestedRoute === $passwordChangeUrl[0] || Yii::$app->requestedRoute === 'cms/user/logout/index') {
+		if ($passwordChangeUrl[0] === Yii::$app->requestedRoute)
 			return;
-		}
 
 		$request = Yii::$app->getRequest();
 		$canRedirect = !$checkAcceptHeader || $this->checkRedirectAcceptable();
