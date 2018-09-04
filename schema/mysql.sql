@@ -70,5 +70,5 @@ create table if not exists `user_auth`
 	`source` varchar(50),
 	`source_id` varchar(50),
 	primary key (`id`),
-	foreign key (`user_id`) references `User` (`id`) on delete cascade on update cascade
+	foreign key (`user_id`) references `user` (`id`) on delete cascade on update cascade
 ) engine InnoDB;
