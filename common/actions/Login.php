@@ -12,6 +12,8 @@ use cms\user\common\models\LoginForm;
  */
 class Login extends Action {
 
+	public $view = 'index';
+
 	public function run() {
 		if (!Yii::$app->user->isGuest) return $this->controller->goHome();
 
@@ -22,7 +24,7 @@ class Login extends Action {
 			return $this->controller->goBack();
 		};
 
-		return $this->controller->render('index', [
+		return $this->controller->render($this->view, [
 			'model' => $model,
 		]);
 	}
